@@ -80,15 +80,15 @@ function getWbProductUrl(wbId) {
 }
 
 const PROMO_BANNERS = [
-  { title: 'Кровельные саморезы RAL 8017', subtitle: 'С EPDM-прокладкой', link: 'catalog.html?cat=roof-screws', wbId: 848081947, accent: true },
-  { title: 'Саморезы по дереву', subtitle: 'Жёлтый цинк · оптом', link: 'catalog.html?cat=wood-screws', wbId: 211763002 },
-  { title: 'Оптовым клиентам', subtitle: 'Прайс и вход для опта', link: 'wholesale.html', wbId: 479499362 },
+  { title: 'Кровельные саморезы RAL 8017', subtitle: 'С EPDM-прокладкой', link: 'catalog.html?cat=roof-screws', wbId: 848081947, image: 'assets/brand/hero-roof.jpg', accent: true },
+  { title: 'Саморезы по дереву', subtitle: 'Жёлтый цинк · оптом', link: 'catalog.html?cat=wood-screws', wbId: 211763002, image: 'assets/brand/hero-wood.jpg' },
+  { title: 'Оптовым клиентам', subtitle: 'Прайс и вход для опта', link: 'wholesale.html', wbId: 479499362, image: 'assets/brand/hero-wholesale.jpg' },
 ];
 
 const HERO_SLIDES = [
-  { title: 'Кровельные саморезы GETSTUFF', subtitle: 'Оцинковка RAL 8017 · EPDM-прокладка', link: 'catalog.html?cat=roof-screws', wbId: 848081947, badge: 'ХИТ ПРОДАЖ' },
-  { title: 'Саморезы по дереву', subtitle: 'Жёлтый и чёрный цинк · упаковки от 150 шт.', link: 'catalog.html?cat=wood-screws', wbId: 211763002, badge: null },
-  { title: 'Крепёж, которому можно доверять', subtitle: 'Российский бренд · 345+ позиций', link: 'catalog.html', wbId: 479499362, badge: 'GETSTUFF' },
+  { title: 'Кровельные саморезы GETSTUFF', subtitle: 'Оцинковка RAL 8017 · EPDM-прокладка', link: 'catalog.html?cat=roof-screws', wbId: 848081947, image: 'assets/brand/hero-roof.jpg', badge: 'ХИТ ПРОДАЖ' },
+  { title: 'Саморезы по дереву', subtitle: 'Жёлтый и чёрный цинк · упаковки от 150 шт.', link: 'catalog.html?cat=wood-screws', wbId: 211763002, image: 'assets/brand/hero-wood.jpg', badge: null },
+  { title: 'Крепёж, которому можно доверять', subtitle: 'Российский бренд · 345+ позиций', link: 'catalog.html', wbId: 479499362, image: 'assets/brand/hero-wholesale.jpg', badge: 'GETSTUFF' },
 ];
 
 const MOCK_ORDERS = [

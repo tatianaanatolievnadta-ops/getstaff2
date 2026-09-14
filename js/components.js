@@ -31,8 +31,11 @@ function renderHeader() {
         <button class="header__menu-btn" aria-label="Меню" onclick="location.href='catalog.html'">${getSvgIcon('menu')}</button>
         <a href="catalog.html" class="header__catalog-btn">${getSvgIcon('catalog')} Каталог</a>
         <a href="index.html" class="header__logo">
-          <span class="header__logo-name">GETSTUFF</span>
-          <span class="header__logo-tag">${SITE.tagline}</span>
+          <img class="header__logo-mark" src="assets/brand/logo-mark.png" alt="" width="36" height="36">
+          <span class="header__logo-text">
+            <span class="header__logo-name">GETSTUFF</span>
+            <span class="header__logo-tag">${SITE.tagline}</span>
+          </span>
         </a>
         <div class="header__search">
           <input type="search" id="search-input" placeholder="Искать крепёж, саморезы, гвозди..." autocomplete="off">
@@ -516,7 +519,7 @@ function renderPromoBanners() {
   if (!el) return;
   el.innerHTML = PROMO_BANNERS.map((b, i) => `
     <a href="${b.link}" class="promo-banner${i > 0 ? ' promo-banner--sm' : ''}">
-      <div class="promo-banner__bg" style="background-image:url('${getLocalProductImagePath(b.wbId)}')"></div>
+      <div class="promo-banner__bg" style="background-image:url('${b.image || getLocalProductImagePath(b.wbId)}')"></div>
       <div class="promo-banner__content">
         <div class="promo-banner__title">${b.title}</div>
         <div class="promo-banner__subtitle">${b.subtitle}</div>

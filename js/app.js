@@ -140,15 +140,14 @@ function initHeroSlider() {
 
   function renderSlide(index) {
     const slide = HERO_SLIDES[index];
+    const img = slide.image || getLocalProductImagePath(slide.wbId);
     slideEl.innerHTML = `
       ${slide.badge ? `<span class="hero__badge">${slide.badge}</span>` : ''}
+      <div class="hero__media" style="background-image:url('${img}')"></div>
       <div class="hero__content">
         <h1 class="hero__title">${slide.title}</h1>
         <p class="hero__subtitle">${slide.subtitle}</p>
         <a href="${slide.link}" class="btn btn--accent">Смотреть</a>
-      </div>
-      <div class="hero__visual">
-        <img src="${getLocalProductImagePath(slide.wbId)}" data-remote="${getWbRemoteImageUrl(slide.wbId)}" alt="${slide.title}" loading="lazy" ${imgOnErrorAttr()}>
       </div>
     `;
     dotsEl.querySelectorAll('.hero__dot').forEach((dot, i) => {
