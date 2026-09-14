@@ -21,33 +21,56 @@ function initCatalog() {
 }
 initCatalog();
 
+/** Актуальная раскладка шардов WB CDN по vol (устаревший vol%20 даёт 404). */
+function getWbBasketHost(vol) {
+  const ranges = [
+    [143, 1], [287, 2], [431, 3], [719, 4], [1007, 5],
+    [1061, 6], [1115, 7], [1169, 8], [1313, 9], [1601, 10],
+    [1655, 11], [1919, 12], [2045, 13], [2189, 14], [2405, 15],
+    [2621, 16], [2837, 17], [3053, 18], [3269, 19], [3485, 20],
+    [3701, 21], [3917, 22], [4133, 23], [4349, 24], [4565, 25],
+    [4877, 26], [5189, 27], [5501, 28], [5813, 29], [6125, 30],
+    [6437, 31], [6749, 32], [7061, 33], [7373, 34], [7685, 35],
+    [7997, 36], [8309, 37], [8621, 38], [8933, 39], [9245, 40],
+    [9557, 41], [9869, 42], [10181, 43], [10493, 44], [10805, 45],
+    [11117, 46], [11429, 47], [11741, 48], [12053, 49], [12365, 50],
+    [12677, 51], [12989, 52], [13301, 53], [13613, 54], [13925, 55],
+    [14237, 56], [14549, 57], [14861, 58], [15173, 59], [15485, 60],
+  ];
+  for (const [maxVol, host] of ranges) {
+    if (vol <= maxVol) return String(host).padStart(2, '0');
+  }
+  return '60';
+}
+
 function getWbRemoteImageUrl(nmId, n = 1) {
   const id = Number(nmId);
   if (!id) return '';
   const vol = Math.floor(id / 100000);
   const part = Math.floor(id / 1000);
-  const host = String((vol % 20) + 1).padStart(2, '0');
+  const host = getWbBasketHost(vol);
   return `https://basket-${host}.wbbasket.ru/vol${vol}/part${part}/${id}/images/big/${n}.webp`;
 }
 
+/** Локальные фото в репозитории лежат как {nmId}/{n}.webp (не assets/products/). */
 function getLocalProductImagePath(nmId, n = 1) {
-  return `assets/products/${nmId}/${n}.webp`;
+  return `${nmId}/${n}.webp`;
 }
 
 function getWbImage(nmId, n = 1) {
-  return getWbRemoteImageUrl(nmId, n);
+  return getLocalProductImagePath(nmId, n);
 }
 
 function getProductImage(product, n = 1) {
   if (product.images?.[n - 1] && /^https?:\/\//.test(product.images[n - 1])) {
     return product.images[n - 1];
   }
-  return getWbRemoteImageUrl(product.wbId, n);
+  return getLocalProductImagePath(product.wbId, n);
 }
 
 function getCategoryImage(catId) {
   const cat = CATEGORIES.find(c => c.id === catId);
-  if (cat?.wbId) return getWbRemoteImageUrl(cat.wbId);
+  if (cat?.wbId) return getLocalProductImagePath(cat.wbId);
   const first = PRODUCTS.find(p => p.category === catId);
   return first ? getProductImage(first) : '';
 }
@@ -78,11 +101,16 @@ function getProductImages(product) {
   return Array.from({ length: Math.min(count, 3) }, (_, i) => getProductImage(product, i + 1));
 }
 
+/** src = локальный файл; при 404 — CDN WB; затем скрыть. */
+function imgOnErrorAttr() {
+  return `onerror="if(this.dataset.step!=='1'&&this.dataset.remote){this.dataset.step='1';this.src=this.dataset.remote}else{this.style.display='none';if(this.nextElementSibling)this.nextElementSibling.style.display='flex'}"`;
+}
+
 function renderProductImage(product, className = '') {
-  const remote = getWbRemoteImageUrl(product.wbId);
   const local = getLocalProductImagePath(product.wbId);
+  const remote = getWbRemoteImageUrl(product.wbId);
   const fallback = product.category === 'nails' ? '📌' : product.category === 'wood-screws' ? '🪵' : '🔩';
-  return `<img src="${remote}" data-local="${local}" alt="${product.name}" class="${className}" loading="lazy" onerror="if(this.dataset.fallback!=='1'&&this.dataset.local&&this.src.indexOf('wbbasket')!==-1){this.dataset.fallback='1';this.src=this.dataset.local}else{this.style.display='none';if(this.nextElementSibling)this.nextElementSibling.style.display='flex'}"><span class="img-fallback" style="display:none">${fallback}</span>`;
+  return `<img src="${local}" data-remote="${remote}" alt="${product.name}" class="${className}" loading="lazy" ${imgOnErrorAttr()}><span class="img-fallback" style="display:none">${fallback}</span>`;
 }
 
 const SITE_DISCOUNT = 0.2;

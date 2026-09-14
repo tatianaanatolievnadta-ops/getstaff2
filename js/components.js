@@ -283,14 +283,18 @@ function initProductPage() {
   document.getElementById('product-container').innerHTML = `
     <div class="product-gallery">
       <div class="product-gallery__main" id="gallery-main">
-        <img src="${getWbImage(product.wbId)}" alt="${product.name}" id="gallery-main-img">
+        <img src="${getLocalProductImagePath(product.wbId)}" data-remote="${getWbRemoteImageUrl(product.wbId)}" alt="${product.name}" id="gallery-main-img" ${imgOnErrorAttr()}>
       </div>
       <div class="product-gallery__thumbs">
-        ${getProductImages(product).map((src, i) => `
-          <button class="product-gallery__thumb${i === 0 ? ' active' : ''}" onclick="setGalleryImage('${src}', this)">
-            <img src="${src}" alt="">
-          </button>
-        `).join('')}
+        ${Array.from({ length: Math.min(product.pics || product.images?.length || 1, 3) }, (_, i) => {
+          const n = i + 1;
+          const local = getLocalProductImagePath(product.wbId, n);
+          const remote = getWbRemoteImageUrl(product.wbId, n);
+          return `
+          <button class="product-gallery__thumb${i === 0 ? ' active' : ''}" onclick="setGalleryImage('${local}', this, '${remote}')">
+            <img src="${local}" data-remote="${remote}" alt="" ${imgOnErrorAttr()}>
+          </button>`;
+        }).join('')}
       </div>
     </div>
     <div class="product-info">
@@ -338,9 +342,14 @@ function initProductPage() {
     </div>`;
 }
 
-function setGalleryImage(src, thumb) {
+function setGalleryImage(src, thumb, remote = '') {
   const img = document.getElementById('gallery-main-img');
-  if (img) img.src = src;
+  if (img) {
+    img.dataset.step = '';
+    img.dataset.remote = remote || '';
+    img.style.display = '';
+    img.src = src;
+  }
   document.querySelectorAll('.product-gallery__thumb').forEach(t => t.classList.remove('active'));
   thumb.classList.add('active');
 }
@@ -507,7 +516,7 @@ function renderPromoBanners() {
   if (!el) return;
   el.innerHTML = PROMO_BANNERS.map((b, i) => `
     <a href="${b.link}" class="promo-banner${i > 0 ? ' promo-banner--sm' : ''}">
-      <div class="promo-banner__bg" style="background-image:url('${getWbImage(b.wbId)}')"></div>
+      <div class="promo-banner__bg" style="background-image:url('${getLocalProductImagePath(b.wbId)}')"></div>
       <div class="promo-banner__content">
         <div class="promo-banner__title">${b.title}</div>
         <div class="promo-banner__subtitle">${b.subtitle}</div>
@@ -522,7 +531,7 @@ function renderCategoryTiles() {
   if (!el) return;
   el.innerHTML = CATEGORIES.map(c => `
     <a href="catalog.html?cat=${c.id}" class="category-card">
-      <div class="category-card__bg" style="background-image:url('${getWbImage(c.wbId)}')"></div>
+      <div class="category-card__bg" style="background-image:url('${getLocalProductImagePath(c.wbId)}')"></div>
       <div class="category-card__label">${c.name}</div>
     </a>
   `).join('');

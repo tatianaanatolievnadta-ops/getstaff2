@@ -3,7 +3,7 @@
  * Запуск: node scripts/sync-wb.mjs
  *
  * 1. Загружает все товары продавца
- * 2. Скачивает фото в assets/products/{id}/
+ * 2. Скачивает фото в {id}/ (корень сайта, как на GitHub Pages)
  * 3. Генерирует js/products.js и js/prices.json
  */
 
@@ -13,7 +13,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
-const ASSETS = path.join(ROOT, 'assets', 'products');
+const ASSETS = ROOT;
 const JS_DIR = path.join(ROOT, 'js');
 
 const SELLER_ID = 55354;
@@ -64,9 +64,23 @@ const HEADERS = {
 function wbImageUrl(nmId, n = 1) {
   const vol = Math.floor(nmId / 100000);
   const part = Math.floor(nmId / 1000);
-  const hosts = Array.from({ length: 20 }, (_, i) => String(i + 1).padStart(2, '0'));
-  const host = hosts[vol % hosts.length];
-  return `https://basket-${host}.wbbasket.ru/vol${vol}/part${part}/${nmId}/images/big/${n}.webp`;
+  const ranges = [
+    [143, 1], [287, 2], [431, 3], [719, 4], [1007, 5],
+    [1061, 6], [1115, 7], [1169, 8], [1313, 9], [1601, 10],
+    [1655, 11], [1919, 12], [2045, 13], [2189, 14], [2405, 15],
+    [2621, 16], [2837, 17], [3053, 18], [3269, 19], [3485, 20],
+    [3701, 21], [3917, 22], [4133, 23], [4349, 24], [4565, 25],
+    [4877, 26], [5189, 27], [5501, 28], [5813, 29], [6125, 30],
+    [6437, 31], [6749, 32], [7061, 33], [7373, 34], [7685, 35],
+    [7997, 36], [8309, 37], [8621, 38], [8933, 39], [9245, 40],
+    [9557, 41], [9869, 42], [10181, 43], [10493, 44], [10805, 45],
+    [11117, 46], [11429, 47], [11741, 48], [12053, 49], [12365, 50],
+  ];
+  let host = 50;
+  for (const [maxVol, h] of ranges) {
+    if (vol <= maxVol) { host = h; break; }
+  }
+  return `https://basket-${String(host).padStart(2, '0')}.wbbasket.ru/vol${vol}/part${part}/${nmId}/images/big/${n}.webp`;
 }
 
 function isValidProduct(name) {
@@ -229,7 +243,7 @@ async function downloadProductImages(product) {
 
   for (let n = 1; n <= pics; n++) {
     const localPath = path.join(dir, `${n}.webp`);
-    const relPath = `assets/products/${product.wbId}/${n}.webp`;
+    const relPath = `${product.wbId}/${n}.webp`;
 
     // Пробуем несколько хостов
     const vol = Math.floor(product.wbId / 100000);
@@ -280,7 +294,7 @@ function buildCategories(products) {
       name: names[id],
       slug: id,
       wbId: catMap.get(id),
-      image: `assets/products/${catMap.get(id)}/1.webp`,
+      image: `${catMap.get(id)}/1.webp`,
     }));
 }
 
@@ -290,7 +304,7 @@ function enrichProducts(raw) {
       const category = detectCategory(p.name);
       const specs = parseSpecs(p.name);
       const badge = getBadge(p);
-      const imgBase = `assets/products/${p.wbId}`;
+      const imgBase = `${p.wbId}`;
       return {
         id: p.id,
         wbId: p.wbId,

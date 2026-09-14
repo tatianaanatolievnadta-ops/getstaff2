@@ -106,7 +106,7 @@ function initSearch() {
       }
       suggestions.innerHTML = results.map(p => `
         <a href="product.html?id=${p.id}" class="search-suggestion">
-          <div class="search-suggestion__img"><img src="${getWbImage(p.wbId)}" alt="" style="width:40px;height:40px;object-fit:contain"></div>
+          <div class="search-suggestion__img"><img src="${getLocalProductImagePath(p.wbId)}" data-remote="${getWbRemoteImageUrl(p.wbId)}" alt="" style="width:40px;height:40px;object-fit:contain" ${imgOnErrorAttr()}></div>
           <div class="search-suggestion__info">
             <div class="search-suggestion__name">${p.name}</div>
             <div class="search-suggestion__sku">Арт. ${p.sku}</div>
@@ -148,7 +148,7 @@ function initHeroSlider() {
         <a href="${slide.link}" class="btn btn--accent">Смотреть</a>
       </div>
       <div class="hero__visual">
-        <img src="${getWbImage(slide.wbId)}" alt="${slide.title}" loading="lazy">
+        <img src="${getLocalProductImagePath(slide.wbId)}" data-remote="${getWbRemoteImageUrl(slide.wbId)}" alt="${slide.title}" loading="lazy" ${imgOnErrorAttr()}>
       </div>
     `;
     dotsEl.querySelectorAll('.hero__dot').forEach((dot, i) => {
