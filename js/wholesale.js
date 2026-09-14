@@ -192,22 +192,23 @@ function renderWholesaleLoginBlock() {
         <div class="wholesale-login__status">
           <span class="wholesale-login__icon">✓</span>
           <div>
-            <div class="wholesale-login__title">Оптовый покупатель</div>
+            <div class="wholesale-login__title">Заявка на опт принята</div>
             <div class="wholesale-login__company">${user.company || user.name}</div>
             <div class="wholesale-login__meta">${user.email}${user.phone ? ' · ' + user.phone : ''}</div>
           </div>
         </div>
         <div class="wholesale-login__actions">
-          <button type="button" class="btn btn--primary" onclick="downloadPriceList()">Скачать прайс-лист</button>
-          <button type="button" class="btn btn--outline" onclick="logoutWholesale();location.reload()">Выйти</button>
+          <button type="button" class="btn btn--primary" onclick="downloadPriceList()">Скачать прайс (с оптом)</button>
+          <a class="btn btn--accent" href="${(typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.telegramBotUrl) || 'https://t.me/zayavkigetstuff_bot'}" target="_blank" rel="noopener">Написать в Telegram</a>
+          <button type="button" class="btn btn--outline" onclick="logoutWholesale();location.reload()">Сбросить</button>
         </div>
       </div>`;
   }
 
   return `
     <div class="wholesale-login">
-      <h3 class="wholesale-login__heading">Вход для оптовых покупателей</h3>
-      <p class="wholesale-login__sub">После входа отображаются оптовые цены, количество в коробке и полный прайс-лист</p>
+      <h3 class="wholesale-login__heading">Заявка для оптовых покупателей</h3>
+      <p class="wholesale-login__sub">Оставьте контакты — менеджер пришлёт оптовый прайс и условия. После отправки на сайте откроются оптовые цены.</p>
       <form id="wholesale-login-form" class="wholesale-login__form" onsubmit="submitWholesaleLogin(event)">
         <div class="form-row">
           <div class="form-group">
@@ -233,7 +234,11 @@ function renderWholesaleLoginBlock() {
           <label for="ws-email">Email *</label>
           <input type="email" id="ws-email" name="email" required placeholder="opt@company.ru">
         </div>
-        <button type="submit" class="btn btn--primary btn--block">Войти как оптовый покупатель</button>
+        <div class="form-group">
+          <label for="ws-comment">Что нужно / объём</label>
+          <textarea id="ws-comment" name="comment" rows="3" placeholder="Например: саморезы кровельные, от 50 коробок"></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary btn--block">Отправить заявку на опт</button>
       </form>
       <button type="button" class="btn btn--outline btn--block" style="margin-top:10px" onclick="downloadPriceList()">
         Скачать прайс-лист (розница)
@@ -241,12 +246,52 @@ function renderWholesaleLoginBlock() {
     </div>`;
 }
 
-function submitWholesaleLogin(e) {
+async function submitWholesaleLogin(e) {
   e.preventDefault();
   const formData = new FormData(e.target);
-  loginWholesale(Object.fromEntries(formData));
+  const data = Object.fromEntries(formData);
+  const btn = e.target.querySelector('button[type="submit"]');
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Отправляем…';
+  }
+
+  const payload = {
+    type: 'wholesale',
+    id: 'GS-OPT-' + Date.now(),
+    company: data.company,
+    inn: data.inn,
+    name: data.name,
+    phone: data.phone,
+    email: data.email,
+    comment: data.comment,
+  };
+
+  const res = await submitOrderToBackend(payload);
+  loginWholesale(data);
+
   const loginEl = document.getElementById('wholesale-login');
   if (loginEl) loginEl.innerHTML = renderWholesaleLoginBlock();
+  updateWholesaleUI();
+
+  if (res.skipped) {
+    showOrderSuccess({
+      title: 'Заявка на опт принята',
+      text: 'Контакты сохранены. Telegram ещё не подключён — напишите в бот, менеджер подтвердит условия.',
+    });
+    return;
+  }
+  if (!res.ok) {
+    showOrderSuccess({
+      title: 'Заявка сохранена',
+      text: 'Не удалось достучаться до Telegram. Напишите нам в бот — менеджер на связи.',
+    });
+    return;
+  }
+  showOrderSuccess({
+    title: 'Заявка на опт отправлена',
+    text: 'Менеджер получил заявку в Telegram и свяжется с вами по оптовым условиям.',
+  });
 }
 
 function escapeCsv(value) {

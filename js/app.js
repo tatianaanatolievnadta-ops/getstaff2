@@ -179,8 +179,9 @@ function setActiveNav() {
     'index.html': 'home',
     'catalog.html': 'catalog',
     'cart.html': 'cart',
-    'account.html': 'account',
+    'checkout.html': 'cart',
     'favorites.html': 'favorites',
+    'wholesale.html': 'wholesale',
   };
   const active = navMap[page] || 'home';
   document.querySelectorAll('.bottom-nav__item').forEach(item => {
@@ -205,11 +206,36 @@ function submitQuickOrder(e, productId) {
     showToast('Введите корректный номер телефона');
     return;
   }
-  showToast('Заявка принята! Менеджер свяжется с вами');
-  e.target.reset();
+  const product = getProductById(productId);
+  const payload = {
+    type: 'quick',
+    id: 'GS-Q-' + Date.now(),
+    phone,
+    productName: product ? `${product.name} (арт. ${product.sku})` : productId,
+    items: product ? `${product.name} × 1` : String(productId),
+    total: product ? getSitePrice(product) : null,
+  };
+  const btn = e.target.querySelector('button[type="submit"]');
+  if (btn) btn.disabled = true;
+  Promise.resolve(submitOrderToBackend(payload)).then((res) => {
+    if (btn) btn.disabled = false;
+    e.target.reset();
+    if (res.skipped) {
+      showOrderSuccess({
+        title: 'Заявка принята локально',
+        text: 'Связь с Telegram ещё не подключена на сервере. Напишите нам в бот или позвоните — менеджер подтвердит заказ.',
+      });
+      return;
+    }
+    if (!res.ok) {
+      showToast('Не удалось отправить. Напишите в Telegram или позвоните.');
+      return;
+    }
+    showOrderSuccess({ title: 'Заявка отправлена', text: 'Менеджер получил заявку в Telegram и свяжется с вами.' });
+  });
 }
 
-function submitCheckout(e) {
+async function submitCheckout(e) {
   e.preventDefault();
   const cart = getCart();
   if (cart.length === 0) {
@@ -223,6 +249,7 @@ function submitCheckout(e) {
   const delivery = calcOzonDelivery(customer.city, subtotal);
   const tierId = typeof getActivePriceTier === 'function' ? getActivePriceTier(cart) : 'retail';
   const order = {
+    type: 'checkout',
     id: 'GS-' + Date.now(),
     date: new Date().toLocaleDateString('ru-RU'),
     status: 'new',
@@ -236,17 +263,52 @@ function submitCheckout(e) {
     total: subtotal + delivery.cost,
     items: cart.map(item => {
       const p = getProductById(item.id);
-      return p ? `${p.name} × ${item.qty}` : '';
-    }).join(', '),
+      return p ? `• ${p.name} × ${item.qty}` : '';
+    }).filter(Boolean).join('\n'),
+    name: customer.name,
+    email: customer.email,
+    phone: customer.phone,
+    city: customer.city,
+    address: customer.address,
     customer,
   };
 
   const orders = JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]');
   orders.unshift(order);
   localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Отправляем…';
+  }
+
+  const res = await submitOrderToBackend(order);
   saveCart([]);
-  showToast('Ваша заявка принята! С вами свяжется первый освободившийся менеджер, но не позднее чем в течение 24 часов.');
-  setTimeout(() => window.location.href = 'account.html', 1500);
+
+  if (res.skipped) {
+    showOrderSuccess({
+      title: 'Заявка сохранена',
+      text: 'Заявка принята. Telegram-сервер ещё не подключён — напишите нам в бот или дождитесь звонка по телефону.',
+    });
+    return;
+  }
+  if (!res.ok) {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Отправить заявку';
+    }
+    showOrderSuccess({
+      title: 'Заявка принята, но Telegram недоступен',
+      text: 'Данные сохранены. Пожалуйста, продублируйте заказ в Telegram или по телефону — так мы точно не потеряем заявку.',
+    });
+    return;
+  }
+
+  showOrderSuccess({
+    title: 'Заявка отправлена',
+    text: 'Менеджер получил заказ в Telegram. Ждите звонок или сообщение — пришлём ссылку на оплату и уточним доставку.',
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {

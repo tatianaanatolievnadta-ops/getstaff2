@@ -48,10 +48,6 @@ function renderHeader() {
             <span data-wholesale-label>Опт</span>
             <span class="header__wholesale-badge" data-wholesale-badge style="display:none">✓</span>
           </a>
-          <a href="account.html" class="header__action header__action--desktop">
-            ${getSvgIcon('user')}
-            <span>Войти</span>
-          </a>
           <a href="favorites.html" class="header__action header__action--desktop">
             ${getSvgIcon('heart')}
             <span>Избранное</span>
@@ -86,9 +82,9 @@ function renderBottomNav() {
         ${getSvgIcon('heart')}
         <span>Избранное</span>
       </a>
-      <a href="account.html" class="bottom-nav__item" data-nav="account">
-        ${getSvgIcon('user')}
-        <span>Профиль</span>
+      <a href="wholesale.html" class="bottom-nav__item" data-nav="wholesale">
+        <span style="font-size:18px;line-height:1">📦</span>
+        <span>Опт</span>
       </a>
     </nav>`;
 }
@@ -127,6 +123,7 @@ function renderFooter() {
             <ul>
               <li><a href="tel:${SITE.phone.replace(/\D/g,'')}">${SITE.phone}</a></li>
               <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
+              <li><a href="${(typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.telegramBotUrl) || 'https://t.me/zayavkigetstuff_bot'}" target="_blank" rel="noopener">Telegram-заявки</a></li>
               <li><a href="${SITE.wbSeller}" target="_blank" rel="noopener">Wildberries</a></li>
               <li><a href="${SITE.ozon}" target="_blank" rel="noopener">Ozon</a></li>
             </ul>

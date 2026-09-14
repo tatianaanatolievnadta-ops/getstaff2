@@ -1749,3 +1749,57 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   .wholesale-login__form .form-row { grid-template-columns: 1fr; }
   .product-info__tiers { grid-template-columns: 1fr 1fr; }
 }
+
+/* ─── Order success overlay ─── */
+.order-success {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(26, 71, 42, 0.55);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.order-success--open { display: flex; }
+.order-success__card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 24px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+}
+.order-success__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: var(--green-light);
+  color: var(--green-primary);
+  font-size: 1.75rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.order-success__title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--green-dark);
+  margin-bottom: 8px;
+}
+.order-success__text,
+.order-success__hint {
+  font-size: 0.9375rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.order-success__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 18px;
+}

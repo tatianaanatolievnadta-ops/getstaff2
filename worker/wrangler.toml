@@ -1,0 +1,6 @@
+{
+  "name": "getstuff-orders",
+  "main": "order-telegram.js",
+  "compatibility_date": "2024-09-01",
+  "workers_dev": true
+}
