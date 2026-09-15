@@ -1,5 +1,5 @@
 /**
- * Отправка заявок на orderApiUrl (Cloudflare Worker → Telegram).
+ * Отправка заявок на orderApiUrl (Google Apps Script / Worker → Telegram).
  * Токен бота на клиенте не используется.
  */
 
@@ -9,17 +9,38 @@ async function submitOrderToBackend(payload) {
     console.warn('SITE_CONFIG.orderApiUrl не задан — заявка только локально');
     return { ok: false, skipped: true, error: 'no_api_url' };
   }
+
+  const body = JSON.stringify(payload);
+
+  // 1) Обычный POST (если сервер отвечает с CORS)
   try {
     const res = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      redirect: 'follow',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body,
     });
     const data = await res.json().catch(() => ({}));
-    if (!res.ok || !data.ok) {
-      return { ok: false, error: data.error || `http_${res.status}` };
+    if (res.ok && data.ok) return { ok: true };
+    // Если CORS/редирект Google мешает — уйдём в fallback ниже
+    if (res.ok === false && res.type !== 'opaque') {
+      // продолжаем
+    } else if (data && data.ok) {
+      return { ok: true };
     }
-    return { ok: true };
+  } catch (_) {
+    // CORS часто падает здесь на Google Apps Script
+  }
+
+  // 2) Fallback: no-cors + text/plain (браузер не даёт прочитать ответ, но запрос уходит)
+  try {
+    await fetch(url, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body,
+    });
+    return { ok: true, opaque: true };
   } catch (e) {
     return { ok: false, error: String(e.message || e) };
   }

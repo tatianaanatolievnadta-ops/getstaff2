@@ -1,7 +1,5 @@
 /* Публичный конфиг сайта. Токен бота сюда НЕ класть. */
 const SITE_CONFIG = {
-  // После деплоя Cloudflare Worker вставьте URL, например:
-  // 'https://getstuff-orders.xxxxx.workers.dev'
-  orderApiUrl: '',
+  orderApiUrl: 'https://script.google.com/macros/s/AKfycbwQWhtfh-gZZRILBNNUgKyVvglF_RwOhO3FPzNK1SKMZ0dBthTt2oCEsznx0vgTmY9U5Q/exec',
   telegramBotUrl: 'https://t.me/zayavkigetstuff_bot',
 };
