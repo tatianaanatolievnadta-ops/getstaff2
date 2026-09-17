@@ -1,28 +1,31 @@
 /**
- * Google Apps Script — простой приём заявок в Telegram без Cloudflare.
+ * GETSTUFF → Telegram
+ * CHAT_ID уже известен: 202709292
  *
- * 1. Откройте https://script.google.com → Новый проект
- * 2. Вставьте этот код
- * 3. Проект → Настройки проекта → Свойства скрипта:
- *      BOT_TOKEN = (токен от BotFather)
- *      CHAT_ID   = (ваш chat_id после /start боту)
- * 4. Развернуть → Новое развёртывание → Тип: Веб-приложение
- *      Выполнять от: Меня
- *      Доступ: Все
- * 5. Скопируйте URL веб-приложения в js/config.js → orderApiUrl
+ * 1) https://script.google.com → Новый проект
+ * 2) Вставьте ВЕСЬ этот код, сохраните
+ * 3) Слева шестерёнка «Настройки проекта» → «Свойства скрипта» → добавить:
+ *      BOT_TOKEN = токен от @BotFather (тот же, что для zayavkigetstuff_bot)
+ *      CHAT_ID   = 202709292
+ * 4) Справа «Развернуть» → «Новое развёртывание»
+ *      Тип: Веб-приложение
+ *      Выполнять как: Я
+ *      У кого есть доступ: Все
+ * 5) Скопируйте URL вида https://script.google.com/macros/s/XXXX/exec
+ *    и пришлите его сюда в чат — пропишу на сайт.
  */
 
 function doPost(e) {
   const props = PropertiesService.getScriptProperties();
   const token = props.getProperty('BOT_TOKEN');
-  const chatId = props.getProperty('CHAT_ID');
-  if (!token || !chatId) {
-    return json_({ ok: false, error: 'server_not_configured' });
+  const chatId = props.getProperty('CHAT_ID') || '202709292';
+  if (!token) {
+    return json_({ ok: false, error: 'no_bot_token' });
   }
 
   let body = {};
   try {
-    body = JSON.parse(e.postData.contents || '{}');
+    body = JSON.parse((e && e.postData && e.postData.contents) || '{}');
   } catch (err) {
     return json_({ ok: false, error: 'invalid_json' });
   }
@@ -47,9 +50,8 @@ function doPost(e) {
   return json_({ ok: true });
 }
 
-function doOptions() {
-  return ContentService.createTextOutput('')
-    .setMimeType(ContentService.MimeType.TEXT);
+function doGet() {
+  return json_({ ok: true, service: 'getstuff-orders' });
 }
 
 function formatOrder_(b) {
@@ -84,4 +86,16 @@ function money_(n) {
 function json_(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+/** Запустите раз из редактора: проверить, что бот пишет вам. */
+function testSend() {
+  const props = PropertiesService.getScriptProperties();
+  const token = props.getProperty('BOT_TOKEN');
+  const chatId = props.getProperty('CHAT_ID') || '202709292';
+  UrlFetchApp.fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify({ chat_id: chatId, text: 'Тест GETSTUFF Apps Script OK' }),
+  });
 }

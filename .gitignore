@@ -4,6 +4,7 @@
 !.env.example
 worker/.dev.vars
 **/secrets.*
+tools/
 
 # OS / editor
 .DS_Store

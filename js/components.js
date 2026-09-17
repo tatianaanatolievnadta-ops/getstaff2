@@ -12,54 +12,149 @@ function getSvgIcon(name) {
   return icons[name] || '';
 }
 
+function renderNavMenuPanel() {
+  const tg = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.telegramBotUrl) || 'https://t.me/zayavkigetstuff_bot';
+  const cats = (CATEGORIES || []).slice(0, 8).map(c =>
+    `<li><a href="catalog.html?cat=${c.id}">${c.name}</a></li>`
+  ).join('');
+  return `
+    <div class="nav-menu__panel" id="nav-menu-panel" hidden>
+      <div class="nav-menu__grid">
+        <div class="nav-menu__col">
+          <div class="nav-menu__title">Каталог</div>
+          <ul>
+            <li><a href="catalog.html"><strong>Весь каталог</strong></a></li>
+            ${cats}
+          </ul>
+        </div>
+        <div class="nav-menu__col">
+          <div class="nav-menu__title">Разделы</div>
+          <ul>
+            <li><a href="index.html#products">Популярное</a></li>
+            <li><a href="wholesale.html">Оптовым клиентам</a></li>
+            <li><a href="index.html#delivery">Доставка Ozon</a></li>
+            <li><a href="index.html#about">О компании</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+            <li><a href="favorites.html">Избранное</a></li>
+          </ul>
+        </div>
+        <div class="nav-menu__col">
+          <div class="nav-menu__title">Связь</div>
+          <ul>
+            <li><a href="tel:${SITE.phone.replace(/\D/g,'')}">${SITE.phone}</a></li>
+            <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
+            <li><a href="${tg}" target="_blank" rel="noopener">Telegram-заявки</a></li>
+            <li><a href="${SITE.wbSeller}" target="_blank" rel="noopener">Wildberries</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>`;
+}
+
 function renderHeader() {
   return `
-    <div class="top-bar">
-      <div class="container">
-        <a href="tel:${SITE.phone.replace(/\D/g,'')}" class="top-bar__phone">${SITE.phone}</a>
-        <div class="top-bar__links">
-          <a href="#about">О компании</a>
-          <a href="wholesale.html">Опт</a>
-          <a href="#delivery">Доставка</a>
-          <a href="#contacts">Контакты</a>
-          <a href="${SITE.wbSeller}" target="_blank" rel="noopener">Wildberries</a>
+    <div class="site-chrome">
+      <div class="top-bar">
+        <div class="container">
+          <a href="tel:${SITE.phone.replace(/\D/g,'')}" class="top-bar__phone">${SITE.phone}</a>
+          <div class="top-bar__links">
+            <a href="index.html#about">О компании</a>
+            <a href="wholesale.html">Опт</a>
+            <a href="index.html#delivery">Доставка</a>
+            <a href="#contacts">Контакты</a>
+            <a href="${SITE.wbSeller}" target="_blank" rel="noopener">Wildberries</a>
+          </div>
         </div>
       </div>
-    </div>
-    <header class="header">
-      <div class="header__inner">
-        <button class="header__menu-btn" aria-label="Меню" onclick="location.href='catalog.html'">${getSvgIcon('menu')}</button>
-        <a href="catalog.html" class="header__catalog-btn">${getSvgIcon('catalog')} Каталог</a>
-        <a href="index.html" class="header__logo">
-          <img class="header__logo-mark" src="assets/brand/logo-mark.png" alt="" width="36" height="36">
-          <span class="header__logo-text">
-            <span class="header__logo-name">GETSTUFF</span>
-            <span class="header__logo-tag">${SITE.tagline}</span>
-          </span>
-        </a>
-        <div class="header__search">
-          <input type="search" id="search-input" placeholder="Искать крепёж, саморезы, гвозди..." autocomplete="off">
-          <span class="header__search-icon">${getSvgIcon('search')}</span>
-          <div class="search-suggestions" id="search-suggestions"></div>
+      <header class="header">
+        <div class="header__inner">
+          <div class="nav-menu" id="site-nav-menu">
+            <button type="button" class="header__menu-btn" id="nav-menu-toggle" aria-label="Меню" aria-expanded="false" aria-controls="nav-menu-panel">${getSvgIcon('menu')}</button>
+            <button type="button" class="header__catalog-btn" id="nav-catalog-toggle" aria-expanded="false" aria-controls="nav-menu-panel">${getSvgIcon('catalog')} Каталог</button>
+            ${renderNavMenuPanel()}
+          </div>
+          <a href="index.html" class="header__logo">
+            <img class="header__logo-mark" src="assets/brand/logo-mark.png" alt="" width="36" height="36">
+            <span class="header__logo-text">
+              <span class="header__logo-name">GETSTUFF</span>
+              <span class="header__logo-tag">${SITE.logoTag || SITE.tagline}</span>
+            </span>
+          </a>
+          <div class="header__search">
+            <input type="search" id="search-input" placeholder="Искать крепёж, саморезы, гвозди..." autocomplete="off">
+            <span class="header__search-icon">${getSvgIcon('search')}</span>
+            <div class="search-suggestions" id="search-suggestions"></div>
+          </div>
+          <div class="header__actions">
+            <a href="wholesale.html" class="header__action header__action--desktop header__action--wholesale">
+              <span style="font-size:18px">📦</span>
+              <span data-wholesale-label>Опт</span>
+              <span class="header__wholesale-badge" data-wholesale-badge style="display:none">✓</span>
+            </a>
+            <a href="favorites.html" class="header__action header__action--desktop">
+              ${getSvgIcon('heart')}
+              <span>Избранное</span>
+            </a>
+            <a href="cart.html" class="header__action">
+              ${getSvgIcon('cart')}
+              <span class="header__badge" style="display:none">0</span>
+              <span>Корзина</span>
+            </a>
+          </div>
         </div>
-        <div class="header__actions">
-          <a href="wholesale.html" class="header__action header__action--desktop header__action--wholesale">
-            <span style="font-size:18px">📦</span>
-            <span data-wholesale-label>Опт</span>
-            <span class="header__wholesale-badge" data-wholesale-badge style="display:none">✓</span>
-          </a>
-          <a href="favorites.html" class="header__action header__action--desktop">
-            ${getSvgIcon('heart')}
-            <span>Избранное</span>
-          </a>
-          <a href="cart.html" class="header__action">
-            ${getSvgIcon('cart')}
-            <span class="header__badge" style="display:none">0</span>
-            <span>Корзина</span>
-          </a>
-        </div>
-      </div>
-    </header>`;
+      </header>
+    </div>`;
+}
+
+function initNavMenu() {
+  const root = document.getElementById('site-nav-menu');
+  const panel = document.getElementById('nav-menu-panel');
+  const toggles = [document.getElementById('nav-menu-toggle'), document.getElementById('nav-catalog-toggle')].filter(Boolean);
+  if (!root || !panel || !toggles.length) return;
+
+  let closeTimer = null;
+  const isDesktop = () => window.matchMedia('(min-width: 768px)').matches;
+
+  function setOpen(open) {
+    root.classList.toggle('is-open', open);
+    panel.hidden = !open;
+    toggles.forEach(btn => btn.setAttribute('aria-expanded', open ? 'true' : 'false'));
+  }
+
+  function openMenu() {
+    clearTimeout(closeTimer);
+    setOpen(true);
+  }
+
+  function closeMenu(delay = 0) {
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(() => setOpen(false), delay);
+  }
+
+  toggles.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(!root.classList.contains('is-open'));
+    });
+    btn.addEventListener('mouseenter', () => {
+      if (isDesktop()) openMenu();
+    });
+  });
+
+  root.addEventListener('mouseenter', () => {
+    if (isDesktop()) openMenu();
+  });
+  root.addEventListener('mouseleave', () => {
+    if (isDesktop()) closeMenu(180);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!root.contains(e.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
 }
 
 function renderBottomNav() {
@@ -140,6 +235,7 @@ function renderFooter() {
 function renderLayout(content) {
   document.body.insertAdjacentHTML('afterbegin', renderHeader());
   document.body.insertAdjacentHTML('beforeend', renderFooter() + renderBottomNav());
+  initNavMenu();
   if (typeof updateWholesaleUI === 'function') updateWholesaleUI();
 }
 
@@ -520,6 +616,7 @@ function renderPromoBanners() {
       <div class="promo-banner__content">
         <div class="promo-banner__title">${b.title}</div>
         <div class="promo-banner__subtitle">${b.subtitle}</div>
+        <span class="promo-banner__cta">${b.cta || 'Купить'}</span>
       </div>
       ${b.accent ? '<span class="promo-banner__badge">АКЦИЯ</span>' : ''}
     </a>

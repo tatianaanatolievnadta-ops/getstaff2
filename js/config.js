@@ -1,5 +1,8 @@
 /* Публичный конфиг сайта. Токен бота сюда НЕ класть. */
 const SITE_CONFIG = {
-  orderApiUrl: 'https://script.google.com/macros/s/AKfycbwQWhtfh-gZZRILBNNUgKyVvglF_RwOhO3FPzNK1SKMZ0dBthTt2oCEsznx0vgTmY9U5Q/exec',
+  // Google Apps Script пока закрыт (403) — оставляем пустым, пока не откроете доступ «Все»
+  orderApiUrl: '',
+  // Заявки уходят на почту (FormSubmit). Первую заявку нужно подтвердить письмом Confirm.
+  orderEmail: 'vokizikov@gmail.com',
   telegramBotUrl: 'https://t.me/zayavkigetstuff_bot',
 };

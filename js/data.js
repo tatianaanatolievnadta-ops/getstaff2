@@ -6,6 +6,7 @@ const SITE = {
   wbSeller: 'https://www.wildberries.ru/seller/55354',
   ozon: 'https://www.ozon.ru',
   tagline: 'Крепёж, которому можно доверять',
+  logoTag: 'КРЕПЁЖ · НАДЁЖНО · ОПТОМ',
   description: 'ТМ «Getstuff» — российский бренд качественных товаров для ремонта и строительства.',
 };
 
@@ -80,9 +81,9 @@ function getWbProductUrl(wbId) {
 }
 
 const PROMO_BANNERS = [
-  { title: 'Кровельные саморезы RAL 8017', subtitle: 'С EPDM-прокладкой', link: 'catalog.html?cat=roof-screws', wbId: 848081947, image: 'assets/brand/hero-roof.jpg', accent: true },
-  { title: 'Саморезы по дереву', subtitle: 'Жёлтый цинк · оптом', link: 'catalog.html?cat=wood-screws', wbId: 211763002, image: 'assets/brand/hero-wood.jpg' },
-  { title: 'Оптовым клиентам', subtitle: 'Прайс и вход для опта', link: 'wholesale.html', wbId: 479499362, image: 'assets/brand/hero-wholesale.jpg' },
+  { title: 'Кровельные саморезы RAL 8017', subtitle: 'С EPDM-прокладкой', link: 'catalog.html?cat=roof-screws', wbId: 848081947, image: 'assets/brand/hero-roof.jpg', accent: true, cta: 'Купить' },
+  { title: 'Саморезы по дереву', subtitle: 'Жёлтый цинк · оптом', link: 'catalog.html?cat=wood-screws', wbId: 211763002, image: 'assets/brand/hero-wood.jpg', cta: 'Купить' },
+  { title: 'Оптовым клиентам', subtitle: 'Прайс и вход для опта', link: 'wholesale.html', wbId: 479499362, image: 'assets/brand/hero-wholesale.jpg', cta: 'Подробнее' },
 ];
 
 const HERO_SLIDES = [

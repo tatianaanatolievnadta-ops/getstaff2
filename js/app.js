@@ -137,8 +137,9 @@ function initHeroSlider() {
   if (!slideEl || !HERO_SLIDES) return;
 
   let current = 0;
+  let animating = false;
 
-  function renderSlide(index) {
+  function paintSlide(index) {
     const slide = HERO_SLIDES[index];
     const img = slide.image || getLocalProductImagePath(slide.wbId);
     slideEl.innerHTML = `
@@ -155,22 +156,42 @@ function initHeroSlider() {
     });
   }
 
+  function renderSlide(index, animate) {
+    if (!animate) {
+      paintSlide(index);
+      slideEl.classList.add('is-visible');
+      return;
+    }
+    if (animating) return;
+    animating = true;
+    slideEl.classList.remove('is-visible');
+    slideEl.classList.add('is-leaving');
+    setTimeout(() => {
+      paintSlide(index);
+      slideEl.classList.remove('is-leaving');
+      requestAnimationFrame(() => {
+        slideEl.classList.add('is-visible');
+        animating = false;
+      });
+    }, 420);
+  }
+
   dotsEl.innerHTML = HERO_SLIDES.map((_, i) =>
     `<button class="hero__dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="Слайд ${i + 1}"></button>`
   ).join('');
 
   dotsEl.addEventListener('click', (e) => {
     if (e.target.classList.contains('hero__dot')) {
-      current = parseInt(e.target.dataset.index);
-      renderSlide(current);
+      current = parseInt(e.target.dataset.index, 10);
+      renderSlide(current, true);
     }
   });
 
-  renderSlide(0);
+  renderSlide(0, false);
   setInterval(() => {
     current = (current + 1) % HERO_SLIDES.length;
-    renderSlide(current);
-  }, 5000);
+    renderSlide(current, true);
+  }, 6000);
 }
 
 function setActiveNav() {
@@ -220,18 +241,20 @@ function submitQuickOrder(e, productId) {
   Promise.resolve(submitOrderToBackend(payload)).then((res) => {
     if (btn) btn.disabled = false;
     e.target.reset();
-    if (res.skipped) {
+    const channels = typeof describeOrderChannels === 'function' ? describeOrderChannels(res) : '';
+    if (!res.ok) {
       showOrderSuccess({
-        title: 'Заявка принята локально',
-        text: 'Связь с Telegram ещё не подключена на сервере. Напишите нам в бот или позвоните — менеджер подтвердит заказ.',
+        title: res.skipped ? 'Заявка сохранена' : 'Заявка принята',
+        text: 'Если письмо/Telegram не пришли — напишите нам в бот или позвоните.',
+        channels,
       });
       return;
     }
-    if (!res.ok) {
-      showToast('Не удалось отправить. Напишите в Telegram или позвоните.');
-      return;
-    }
-    showOrderSuccess({ title: 'Заявка отправлена', text: 'Менеджер получил заявку в Telegram и свяжется с вами.' });
+    showOrderSuccess({
+      title: 'Заявка отправлена',
+      text: 'Менеджер получил заявку и свяжется с вами.',
+      channels,
+    });
   });
 }
 
@@ -285,29 +308,19 @@ async function submitCheckout(e) {
 
   const res = await submitOrderToBackend(order);
   saveCart([]);
+  const channels = typeof describeOrderChannels === 'function' ? describeOrderChannels(res) : '';
 
-  if (res.skipped) {
-    showOrderSuccess({
-      title: 'Заявка сохранена',
-      text: 'Заявка принята. Telegram-сервер ещё не подключён — напишите нам в бот или дождитесь звонка по телефону.',
-    });
-    return;
-  }
-  if (!res.ok) {
-    if (submitBtn) {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Отправить заявку';
-    }
-    showOrderSuccess({
-      title: 'Заявка принята, но Telegram недоступен',
-      text: 'Данные сохранены. Пожалуйста, продублируйте заказ в Telegram или по телефону — так мы точно не потеряем заявку.',
-    });
-    return;
+  if (submitBtn) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Отправить заявку';
   }
 
   showOrderSuccess({
-    title: 'Заявка отправлена',
-    text: 'Менеджер получил заказ в Telegram. Ждите звонок или сообщение — пришлём ссылку на оплату и уточним доставку.',
+    title: res.ok ? 'Заявка отправлена' : 'Заявка принята',
+    text: res.ok
+      ? 'Менеджер получил заказ и свяжется с вами — пришлём оплату и уточним доставку.'
+      : 'Автоотправка сбоя. Напишите в Telegram или позвоните — заявка сохранена.',
+    channels,
   });
 }
 

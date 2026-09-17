@@ -274,23 +274,13 @@ async function submitWholesaleLogin(e) {
   if (loginEl) loginEl.innerHTML = renderWholesaleLoginBlock();
   updateWholesaleUI();
 
-  if (res.skipped) {
-    showOrderSuccess({
-      title: 'Заявка на опт принята',
-      text: 'Контакты сохранены. Telegram ещё не подключён — напишите в бот, менеджер подтвердит условия.',
-    });
-    return;
-  }
-  if (!res.ok) {
-    showOrderSuccess({
-      title: 'Заявка сохранена',
-      text: 'Не удалось достучаться до Telegram. Напишите нам в бот — менеджер на связи.',
-    });
-    return;
-  }
+  const channels = typeof describeOrderChannels === 'function' ? describeOrderChannels(res) : '';
   showOrderSuccess({
-    title: 'Заявка на опт отправлена',
-    text: 'Менеджер получил заявку в Telegram и свяжется с вами по оптовым условиям.',
+    title: res.ok ? 'Заявка на опт отправлена' : 'Заявка на опт принята',
+    text: res.ok
+      ? 'Менеджер получил заявку и свяжется по оптовым условиям.'
+      : 'Напишите в Telegram или дождитесь письма/звонка.',
+    channels,
   });
 }
 
