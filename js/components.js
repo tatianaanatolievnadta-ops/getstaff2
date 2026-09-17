@@ -7,6 +7,7 @@ function getSvgIcon(name) {
     home: '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10l9-7 9 7v10a1 1 0 01-1 1H4a1 1 0 01-1-1V10z"/></svg>',
     catalog: '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>',
     heart: '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-8-4.5-8-11a5 5 0 019-3 5 5 0 019 3c0 6.5-8 11-8 11z"/></svg>',
+    wholesale: '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 8l9-4 9 4v9l-9 4-9-4V8z"/><path d="M3 8l9 4 9-4M12 12v9"/></svg>',
     filter: '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4h14M4 10h10M7 16h4"/></svg>',
   };
   return icons[name] || '';
@@ -87,7 +88,7 @@ function renderHeader() {
           </div>
           <div class="header__actions">
             <a href="wholesale.html" class="header__action header__action--desktop header__action--wholesale">
-              <span style="font-size:18px">📦</span>
+              ${getSvgIcon('wholesale')}
               <span data-wholesale-label>Опт</span>
               <span class="header__wholesale-badge" data-wholesale-badge style="display:none">✓</span>
             </a>
@@ -178,7 +179,7 @@ function renderBottomNav() {
         <span>Избранное</span>
       </a>
       <a href="wholesale.html" class="bottom-nav__item" data-nav="wholesale">
-        <span style="font-size:18px;line-height:1">📦</span>
+        ${getSvgIcon('wholesale')}
         <span>Опт</span>
       </a>
     </nav>`;
