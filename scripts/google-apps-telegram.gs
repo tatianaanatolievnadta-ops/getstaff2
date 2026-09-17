@@ -1,24 +1,24 @@
 /**
- * GETSTUFF → Telegram
- * CHAT_ID уже известен: 202709292
+ * GETSTUFF → Telegram (группа «ЗАЯВКИ с сайта GETSUFF»)
+ * CHAT_ID группы: -1004339261263
+ * Инвайт: https://t.me/+thCtFYz7sP8yMTEy
  *
  * 1) https://script.google.com → Новый проект
  * 2) Вставьте ВЕСЬ этот код, сохраните
  * 3) Слева шестерёнка «Настройки проекта» → «Свойства скрипта» → добавить:
- *      BOT_TOKEN = токен от @BotFather (тот же, что для zayavkigetstuff_bot)
- *      CHAT_ID   = 202709292
+ *      BOT_TOKEN = токен от @BotFather (zayavkigetstuff_bot)
+ *      CHAT_ID   = -1004339261263
  * 4) Справа «Развернуть» → «Новое развёртывание»
  *      Тип: Веб-приложение
  *      Выполнять как: Я
  *      У кого есть доступ: Все
- * 5) Скопируйте URL вида https://script.google.com/macros/s/XXXX/exec
- *    и пришлите его сюда в чат — пропишу на сайт.
+ * 5) URL вида https://script.google.com/macros/s/XXXX/exec → в js/config.js → orderApiUrl
  */
 
 function doPost(e) {
   const props = PropertiesService.getScriptProperties();
   const token = props.getProperty('BOT_TOKEN');
-  const chatId = props.getProperty('CHAT_ID') || '202709292';
+  const chatId = props.getProperty('CHAT_ID') || '-1004339261263';
   if (!token) {
     return json_({ ok: false, error: 'no_bot_token' });
   }
@@ -92,7 +92,7 @@ function json_(obj) {
 function testSend() {
   const props = PropertiesService.getScriptProperties();
   const token = props.getProperty('BOT_TOKEN');
-  const chatId = props.getProperty('CHAT_ID') || '202709292';
+  const chatId = props.getProperty('CHAT_ID') || '-1004339261263';
   UrlFetchApp.fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
     method: 'post',
     contentType: 'application/json',

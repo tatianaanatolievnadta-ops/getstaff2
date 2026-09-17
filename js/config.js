@@ -1,8 +1,10 @@
 /* Публичный конфиг сайта. Токен бота сюда НЕ класть. */
 const SITE_CONFIG = {
-  // Google Apps Script пока закрыт (403) — оставляем пустым, пока не откроете доступ «Все»
+  // После открытия GAS «доступ: Все» или деплоя Worker — вставить URL сюда
   orderApiUrl: '',
-  // Заявки уходят на почту (FormSubmit). Первую заявку нужно подтвердить письмом Confirm.
-  orderEmail: 'vokizikov@gmail.com',
+  // Заявки уходят на почту (FormSubmit). Первую заявку подтвердите письмом Confirm.
+  orderEmail: 'tatiana.anatolievna.dta@gmail.com',
   telegramBotUrl: 'https://t.me/zayavkigetstuff_bot',
+  // Группа менеджеров (куда падают заявки после подключения моста)
+  telegramGroupUrl: 'https://t.me/+thCtFYz7sP8yMTEy',
 };

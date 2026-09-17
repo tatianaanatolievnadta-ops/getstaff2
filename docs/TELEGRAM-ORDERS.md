@@ -1,26 +1,33 @@
-# Подключение заявок к Telegram (@zayavkigetstuff_bot)
+# Подключение заявок к Telegram-группе
+
+Группа менеджеров: https://t.me/+thCtFYz7sP8yMTEy  
+Бот: https://t.me/zayavkigetstuff_bot  
+`CHAT_ID` супергруппы: `-1004339261263`
 
 Токен бота **нельзя** класть в `js/` — сайт на GitHub Pages публичный.
 
-## Шаг 1. Привязать чат менеджера
+## Что уже сделано
 
-1. Откройте https://t.me/zayavkigetstuff_bot
-2. Нажмите **Start** / напишите `/start`
-3. Узнайте свой `chat_id`: напишите боту [@userinfobot](https://t.me/userinfobot) — он пришлёт Id  
-   (или перешлите любое сообщение боту-хелперу)
-4. Сообщите `chat_id` (число вроде `123456789`) — пропишем в секрет
+- Бот добавлен в группу, тестовое сообщение в группу уходит.
+- На сайте заявки параллельно идут на почту `tatiana.anatolievna.dta@gmail.com` (FormSubmit).
 
-## Шаг 2. Бэкенд (выберите один)
+## Как добавить менеджера
 
-### A) Google Apps Script (проще всего, бесплатно)
+1. Откройте инвайт группы: https://t.me/+thCtFYz7sP8yMTEy  
+2. Добавьте человека в группу — он сразу видит все заявки.  
+3. Бот должен оставаться в группе (лучше сделать его **админом** с правом писать сообщения).
 
-1. Файл шаблона: `scripts/google-apps-telegram.gs`
+## Включить автоотправку с сайта (один раз)
+
+### Вариант A — Google Apps Script
+
+1. Файл: `scripts/google-apps-telegram.gs`
 2. https://script.google.com → новый проект → вставить код
-3. Свойства скрипта: `BOT_TOKEN`, `CHAT_ID`
-4. Развернуть как **веб-приложение** (доступ: Все)
-5. URL вставить в `js/config.js` → `orderApiUrl`
+3. Свойства скрипта: `BOT_TOKEN`, `CHAT_ID=-1004339261263`
+4. Развернуть как **веб-приложение**, доступ: **Все**
+5. URL вставить в `js/config.js` → `orderApiUrl` и запушить
 
-### B) Cloudflare Worker
+### Вариант B — Cloudflare Worker
 
 ```bash
 cd worker
@@ -30,12 +37,8 @@ npx wrangler secret put CHAT_ID
 npx wrangler deploy
 ```
 
-URL `*.workers.dev` → в `js/config.js` → `orderApiUrl`
+URL `*.workers.dev` → `js/config.js` → `orderApiUrl`
 
-## Шаг 3. Проверка
+## Проверка
 
-Оформите тестовую заявку с сайта → сообщение должно прийти в Telegram.
-
-## Безопасность
-
-Токен уже светился в чате. После настройки зайдите в @BotFather → `/revoke` для этого бота и обновите секрет новым токеном.
+Оформите тестовую заявку на сайте → сообщение в группе + письмо на почту.
