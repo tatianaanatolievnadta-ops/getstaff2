@@ -17,20 +17,22 @@
 
   <div class="checkout-page checkout-layout">
     <form id="checkout-form" onsubmit="submitCheckout(event)">
+      <div class="checkout-card" id="buy-options-checkout"></div>
+
       <div class="checkout-card">
-        <div class="checkout-card__title">Доставка Ozon</div>
+        <div class="checkout-card__title">Доставка с сайта</div>
         <p class="delivery-info__text" style="margin-bottom:16px">
-          Доставка заказов осуществляется через логистику <strong>Ozon</strong> до пункта выдачи или курьером.
-          Стоимость рассчитывается автоматически.
-          <br><strong>Отправка — по пятницам.</strong> Точную дату и условия согласуйте с менеджером индивидуально.
+          Заказ с сайта — со скидкой <strong>−20%</strong> к цене WB.
+          Отправка <strong>1 раз в неделю</strong>. Способ доставки менеджер согласует с вами лично.
+          Ориентир по стоимости Ozon считается автоматически по городу.
         </p>
         <div class="form-group">
           <label for="city">Город *</label>
           <input type="text" id="city" name="city" required placeholder="Гатчина, Краснодар, Москва…" oninput="updateSummaryByCity('city', 'checkout-summary')">
         </div>
         <div class="form-group">
-          <label for="address">Адрес / пункт выдачи Ozon *</label>
-          <textarea id="address" name="address" required placeholder="Улица, дом или адрес пункта выдачи Ozon"></textarea>
+          <label for="address">Адрес / пункт выдачи (желаемый) *</label>
+          <textarea id="address" name="address" required placeholder="Улица, дом или адрес пункта выдачи — уточним с менеджером"></textarea>
         </div>
       </div>
 
@@ -72,6 +74,8 @@
   <script>
     renderLayout();
     initCheckoutPage();
+    const buyCheckout = document.getElementById('buy-options-checkout');
+    if (buyCheckout) buyCheckout.innerHTML = renderBuyOptions({ compact: true });
   </script>
 </body>
 </html>

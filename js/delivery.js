@@ -6,8 +6,8 @@ const OZON_DELIVERY = {
   provider: 'Ozon',
   freeFrom: 5000,
   spbLeningradFreeFromPieces: 50000,
-  dispatchNote: 'Отправка заказов — по пятницам.',
-  managerNote: 'Точную дату и условия доставки согласуйте с менеджером индивидуально.',
+  dispatchNote: 'Отправка заказов с сайта — 1 раз в неделю (по пятницам).',
+  managerNote: 'Способ доставки согласуем с менеджером. На Wildberries — сроки как на карточке WB.',
   rates: {
     priority: 149,
     moscow: 199,
@@ -324,9 +324,10 @@ function renderOrderSummaryRows(cart, city) {
       ${typeof renderCartTierSummary === 'function' ? renderCartTierSummary(cart) : ''}
       <div class="cart-summary__row"><span>Товары</span><span>${formatPrice(subtotal)}</span></div>
       <div class="cart-summary__row">
-        <span>Доставка Ozon${delivery.zoneName && delivery.zone !== 'region' ? ` · ${delivery.zoneName}` : ''}</span>
+        <span>Доставка (примерно)${delivery.zoneName && delivery.zone !== 'region' ? ` · ${delivery.zoneName}` : ''}</span>
         <span>${delivery.cost === 0 ? 'Бесплатно' : formatPrice(delivery.cost)}</span>
       </div>
+      <p class="delivery-info__hint" style="margin:4px 0 8px">Оценка по зоне. Точную сумму и способ подтвердит менеджер. Это не расчёт API Ozon.</p>
       ${renderFreeDeliveryHint(city, subtotal, getCartCount())}
       <div class="cart-summary__row cart-summary__total"><span>Итого</span><span>${formatPrice(total)}</span></div>
       ${renderDeliveryInfo(delivery, city)}

@@ -19,8 +19,12 @@ function formatOrderText(payload) {
     payload.address ? ('Адрес/ПВЗ: ' + payload.address) : null,
     payload.priceTierName ? ('Тариф: ' + payload.priceTierName) : null,
     payload.subtotal != null ? ('Товары: ' + Math.round(payload.subtotal) + ' руб.') : null,
-    payload.deliveryCost != null ? ('Доставка: ' + Math.round(payload.deliveryCost) + ' руб.') : null,
-    payload.total != null ? ('Итого: ' + Math.round(payload.total) + ' руб.') : null,
+    payload.deliveryCost != null
+      ? ('Доставка (примерно'
+        + (payload.deliveryZone ? ', ' + payload.deliveryZone : '')
+        + ', Ozon-оценка): ' + Math.round(payload.deliveryCost) + ' руб.')
+      : null,
+    payload.total != null ? ('Итого с доставкой (примерно): ' + Math.round(payload.total) + ' руб.') : null,
     '',
     payload.items || null,
     payload.productName ? ('Товар: ' + payload.productName) : null,

@@ -68,8 +68,15 @@ function formatOrder_(b) {
   if (b.address) lines.push('Адрес/ПВЗ: ' + b.address);
   if (b.priceTierName) lines.push('Тариф: ' + b.priceTierName);
   if (b.subtotal != null) lines.push('Товары: ' + money_(b.subtotal));
-  if (b.deliveryCost != null) lines.push('Доставка (оценка): ' + money_(b.deliveryCost));
-  if (b.total != null) lines.push('Итого: ' + money_(b.total));
+  if (b.deliveryCost != null) {
+    lines.push(
+      'Доставка (примерно' +
+        (b.deliveryZone ? ', ' + b.deliveryZone : '') +
+        ', оценка): ' + money_(b.deliveryCost)
+    );
+  }
+  if (b.total != null) lines.push('Итого с доставкой (примерно): ' + money_(b.total));
+  lines.push('Способ доставки согласует менеджер. Отправка с сайта — 1 раз в неделю.');
   lines.push('');
   if (b.items) lines.push('Состав:\n' + b.items);
   if (b.productName) lines.push('Товар: ' + b.productName);

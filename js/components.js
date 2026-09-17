@@ -1,3 +1,32 @@
+function renderBuyOptions(opts = {}) {
+  const compact = !!opts.compact;
+  const titleTag = compact ? 'h3' : 'h2';
+  const titleClass = compact ? 'buy-options__title buy-options__title--sm' : 'section__title buy-options__title';
+  return `
+    <div class="buy-options${compact ? ' buy-options--compact' : ''}">
+      <${titleTag} class="${titleClass}">Два способа купить</${titleTag}>
+      <p class="buy-options__lead">Выберите удобный вариант — и скорость доставки, и цена зависят от канала.</p>
+      <div class="buy-options__grid">
+        <div class="buy-options__card">
+          <div class="buy-options__label">Wildberries</div>
+          <div class="buy-options__name">Купить на WB</div>
+          <p class="buy-options__text">
+            Цена как на маркетплейсе. Сроки и способ доставки — <strong>как указано на Wildberries</strong>
+            (склады и логистика WB).
+          </p>
+        </div>
+        <div class="buy-options__card buy-options__card--site">
+          <div class="buy-options__label buy-options__label--site">Сайт GETSTUFF</div>
+          <div class="buy-options__name">Со скидкой −20%</div>
+          <p class="buy-options__text">
+            Дешевле, чем на WB. Отправка <strong>1 раз в неделю</strong>.
+            Способ и детали доставки <strong>согласовываем с менеджером</strong> — подберём удобный для вас вариант.
+          </p>
+        </div>
+      </div>
+    </div>`;
+}
+
 function getSvgIcon(name) {
   const icons = {
     menu: '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>',
@@ -419,10 +448,11 @@ function initProductPage() {
       </div>
 
       <div class="product-actions">
-        <button class="btn btn--primary" onclick="addToCart('${product.id}', parseInt(document.getElementById('product-qty').value))">В корзину</button>
+        <button class="btn btn--primary" onclick="addToCart('${product.id}', parseInt(document.getElementById('product-qty').value))">В корзину (−20%)</button>
         <a href="${getWbProductUrl(product.wbId)}" target="_blank" rel="noopener" class="btn btn--wb btn--wb-lg">Купить на Wildberries</a>
         <button class="btn btn--icon" onclick="toggleFavorite('${product.id}')">♡</button>
       </div>
+      ${renderBuyOptions({ compact: true })}
 
       <div class="quick-order">
         <div class="quick-order__title">⚡ Быстрый заказ</div>

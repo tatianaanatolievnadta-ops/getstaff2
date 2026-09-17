@@ -1369,6 +1369,70 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   flex-wrap: wrap;
   gap: 10px;
 }
+
+/* ─── Два способа купить (WB vs сайт) ─── */
+.buy-options { margin-bottom: 8px; }
+.buy-options__title { margin-bottom: 8px; }
+.buy-options__title--sm {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 6px;
+}
+.buy-options__lead {
+  font-size: 0.9375rem;
+  color: var(--gray-600);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  max-width: 40rem;
+}
+.buy-options--compact .buy-options__lead {
+  font-size: 0.8125rem;
+  margin-bottom: 12px;
+}
+.buy-options__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.buy-options__card {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+.buy-options__card--site {
+  background: var(--green-light);
+  border-color: var(--green-bright);
+}
+.buy-options__label {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #CB11AB;
+  margin-bottom: 6px;
+}
+.buy-options__label--site { color: var(--green-dark); }
+.buy-options__name {
+  font-size: 1.0625rem;
+  font-weight: 800;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+.buy-options--compact .buy-options__name { font-size: 0.9375rem; }
+.buy-options__text {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--gray-600);
+}
+.buy-options--compact .buy-options__text { font-size: 0.8125rem; }
+@media (min-width: 768px) {
+  .buy-options__grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .buy-options--compact .buy-options__grid { grid-template-columns: 1fr; }
+}
+
 .delivery-info__list {
   margin: 12px 0 0 18px;
   font-size: 0.875rem;

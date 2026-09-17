@@ -112,19 +112,24 @@
     </div>
   </section>
 
+  <!-- Как купить: WB или сайт -->
+  <section class="section" id="how-to-buy" style="background:var(--white)">
+    <div class="container" id="buy-options-home"></div>
+  </section>
+
   <!-- Доставка -->
   <section class="section" id="delivery">
     <div class="container">
-      <h2 class="section__title" style="margin-bottom:16px">Доставка Ozon</h2>
+      <h2 class="section__title" style="margin-bottom:16px">Доставка с сайта (через Ozon)</h2>
       <div class="delivery-info delivery-info--page">
         <div class="delivery-info__header">
           <span class="delivery-info__logo">Ozon</span>
-          <span class="delivery-info__title">Доставка через Ozon</span>
+          <span class="delivery-info__title">Доставка заказов с сайта</span>
         </div>
         <p class="delivery-info__text">
-          Отправляем заказы через логистику <strong>Ozon</strong> — до пункта выдачи или курьером.
-          Стоимость и срок рассчитываются автоматически в корзине при указании города.
-          <br><strong>Отправка — по пятницам.</strong> Точную дату согласуйте с менеджером.
+          Заказы с сайта отправляем через логистику <strong>Ozon</strong> — до пункта выдачи или курьером.
+          Ориентировочная стоимость по регионам ниже; итоговый способ и адрес <strong>согласует менеджер</strong>.
+          <br><strong>Отправка — 1 раз в неделю (по пятницам).</strong>
         </p>
         <div id="delivery-zones"></div>
       </div>
@@ -186,6 +191,8 @@
   <script>
     renderLayout();
     initHomePage();
+    const buyHome = document.getElementById('buy-options-home');
+    if (buyHome) buyHome.innerHTML = renderBuyOptions();
     document.getElementById('about-img').src = getWbImage(848081947);
     (function () {
       var tg = document.getElementById('delivery-feedback-tg');
