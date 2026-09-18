@@ -43,7 +43,6 @@ function getSvgIcon(name) {
 }
 
 function renderNavMenuPanel() {
-  const tg = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.telegramBotUrl) || 'https://t.me/zayavkigetstuff_bot';
   const cats = (CATEGORIES || []).slice(0, 8).map(c =>
     `<li><a href="catalog.html?cat=${c.id}">${c.name}</a></li>`
   ).join('');
@@ -62,7 +61,7 @@ function renderNavMenuPanel() {
           <ul>
             <li><a href="index.html#products">Популярное</a></li>
             <li><a href="wholesale.html">Оптовым клиентам</a></li>
-            <li><a href="index.html#delivery">Доставка Ozon</a></li>
+            <li><a href="index.html#delivery">Доставка</a></li>
             <li><a href="index.html#about">О компании</a></li>
             <li><a href="#contacts">Контакты</a></li>
             <li><a href="favorites.html">Избранное</a></li>
@@ -73,7 +72,7 @@ function renderNavMenuPanel() {
           <ul>
             <li><a href="tel:${SITE.phone.replace(/\D/g,'')}">${SITE.phone}</a></li>
             <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
-            <li><a href="${tg}" target="_blank" rel="noopener">Telegram-заявки</a></li>
+            <li><a href="checkout.html">Оставить заявку</a></li>
             <li><a href="${SITE.wbSeller}" target="_blank" rel="noopener">Wildberries</a></li>
           </ul>
         </div>
@@ -248,7 +247,7 @@ function renderFooter() {
             <ul>
               <li><a href="tel:${SITE.phone.replace(/\D/g,'')}">${SITE.phone}</a></li>
               <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
-              <li><a href="${(typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.telegramBotUrl) || 'https://t.me/zayavkigetstuff_bot'}" target="_blank" rel="noopener">Telegram-заявки</a></li>
+              <li><a href="checkout.html">Оставить заявку</a></li>
               <li><a href="${SITE.wbSeller}" target="_blank" rel="noopener">Wildberries</a></li>
               <li><a href="${SITE.ozon}" target="_blank" rel="noopener">Ozon</a></li>
             </ul>

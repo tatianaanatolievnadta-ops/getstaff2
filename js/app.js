@@ -245,7 +245,7 @@ function submitQuickOrder(e, productId) {
     if (!res.ok) {
       showOrderSuccess({
         title: res.skipped ? 'Заявка сохранена' : 'Заявка принята',
-        text: 'Если письмо/Telegram не пришли — напишите нам в бот или позвоните.',
+        text: 'Если заявка не дошла — позвоните нам, менеджер на связи.',
         channels,
       });
       return;

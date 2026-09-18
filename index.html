@@ -142,7 +142,7 @@
         </div>
         <div class="delivery-cta__actions">
           <a href="checkout.html" class="btn btn--accent">Оставить заявку</a>
-          <a id="delivery-feedback-tg" href="https://t.me/zayavkigetstuff_bot" class="btn btn--outline" target="_blank" rel="noopener">Написать в Telegram</a>
+          <a href="tel:+79119103344" class="btn btn--outline">Позвонить</a>
         </div>
       </div>
     </div>
@@ -194,12 +194,6 @@
     const buyHome = document.getElementById('buy-options-home');
     if (buyHome) buyHome.innerHTML = renderBuyOptions();
     document.getElementById('about-img').src = getWbImage(848081947);
-    (function () {
-      var tg = document.getElementById('delivery-feedback-tg');
-      if (tg && typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.telegramBotUrl) {
-        tg.href = SITE_CONFIG.telegramBotUrl;
-      }
-    })();
   </script>
 </body>
 </html>

@@ -199,7 +199,7 @@ function renderWholesaleLoginBlock() {
         </div>
         <div class="wholesale-login__actions">
           <button type="button" class="btn btn--primary" onclick="downloadPriceList()">Скачать прайс (с оптом)</button>
-          <a class="btn btn--accent" href="${(typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.telegramBotUrl) || 'https://t.me/zayavkigetstuff_bot'}" target="_blank" rel="noopener">Написать в Telegram</a>
+          <a class="btn btn--accent" href="tel:${(typeof SITE !== 'undefined' ? SITE.phone : '+79119103344').replace(/\D/g,'')}">Позвонить менеджеру</a>
           <button type="button" class="btn btn--outline" onclick="logoutWholesale();location.reload()">Сбросить</button>
         </div>
       </div>`;

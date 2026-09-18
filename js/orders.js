@@ -110,20 +110,16 @@ async function submitOrderToBackend(payload) {
 }
 
 function showOrderSuccess(opts = {}) {
-  const botUrl =
-    (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.telegramBotUrl) ||
-    'https://t.me/zayavkigetstuff_bot';
-  const email = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.orderEmail) || '';
+  const phone = (typeof SITE !== 'undefined' && SITE.phone) || '+7 (911) 910-33-44';
+  const phoneHref = 'tel:' + phone.replace(/\D/g, '');
   const title = opts.title || 'Заявка отправлена';
   const text =
     opts.text ||
-    'Менеджер свяжется с вами. Обычно отвечаем в течение рабочего дня, не позднее 24 часов.';
+    'Менеджер уже получил заявку и свяжется с вами. Обычно отвечаем в течение рабочего дня, не позднее 24 часов. Бот и группу открывать не нужно.';
 
   let where = '';
   if (opts.channels) {
-    where = `<p class="order-success__hint"><strong>Куда ушла заявка:</strong><br>${opts.channels}</p>`;
-  } else {
-    where = `<p class="order-success__hint">Заявки смотрите в Telegram-боте <a href="${botUrl}" target="_blank" rel="noopener">@zayavkigetstuff_bot</a>${email ? ' и на почте <strong>' + email + '</strong>' : ''}.</p>`;
+    where = `<p class="order-success__hint">${opts.channels}</p>`;
   }
 
   let overlay = document.getElementById('order-success-overlay');
@@ -141,7 +137,7 @@ function showOrderSuccess(opts = {}) {
       <p class="order-success__text">${text}</p>
       ${where}
       <div class="order-success__actions">
-        <a class="btn btn--accent" href="${botUrl}" target="_blank" rel="noopener">Открыть Telegram-бот</a>
+        <a class="btn btn--accent" href="${phoneHref}">Позвонить ${phone}</a>
         <a class="btn btn--outline" href="index.html">На главную</a>
       </div>
     </div>`;
@@ -154,18 +150,9 @@ function hideOrderSuccess() {
 }
 
 function describeOrderChannels(res) {
-  const parts = [];
-  if (res.telegram && res.telegram.ok) parts.push('Telegram-бот @zayavkigetstuff_bot (личные сообщения бота)');
-  if (res.email && res.email.ok) {
-    const email = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.orderEmail) || 'email';
-    if (res.email.needsConfirm) {
-      parts.push('Email: пришло письмо подтверждения на ' + email + ' — откройте и нажмите Confirm');
-    } else {
-      parts.push('Email: ' + email);
-    }
+  const phone = (typeof SITE !== 'undefined' && SITE.phone) || '+7 (911) 910-33-44';
+  if (res.ok) {
+    return 'Заявка ушла менеджеру. Открывать Telegram не нужно — мы сами напишем или позвоним.';
   }
-  if (!parts.length) {
-    return 'Автоотправка не прошла. Напишите нам в Telegram или позвоните — заявка сохранена в браузере.';
-  }
-  return parts.join('<br>');
+  return `Автоотправка сбоя. Позвоните <a href="tel:${phone.replace(/\D/g, '')}">${phone}</a> — заявка сохранена в браузере.`;
 }
