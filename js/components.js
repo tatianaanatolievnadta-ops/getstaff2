@@ -88,9 +88,12 @@ function renderHeader() {
         <div class="container">
           <a href="tel:${SITE.phone.replace(/\D/g,'')}" class="top-bar__phone">${SITE.phone}</a>
           <div class="top-bar__links">
+            <a href="docs.html">Документы</a>
+            <a href="docs.html#privacy">Конфиденциальность</a>
+            <a href="docs.html#offer">Оферта</a>
             <a href="index.html#about">О компании</a>
             <a href="wholesale.html">Опт</a>
-            <a href="index.html#delivery">Доставка</a>
+            <a href="docs.html#delivery">Доставка</a>
             <a href="#contacts">Контакты</a>
             <a href="${SITE.wbSeller}" target="_blank" rel="noopener">Wildberries</a>
           </div>
@@ -122,7 +125,7 @@ function renderHeader() {
               ${getSvgIcon('heart')}
               <span>Избранное</span>
             </a>
-            <a href="cart.html" class="header__action">
+            <a href="cart.html" class="header__action header__action--desktop">
               ${getSvgIcon('cart')}
               <span class="header__badge" style="display:none">0</span>
               <span>Корзина</span>
@@ -256,7 +259,16 @@ function renderFooter() {
           <div class="footer__logo">
             <img src="assets/brand/logo-full.png" alt="GETSTUFF" class="footer__logo-img">
           </div>
-          <p>© 2026 GETSTUFF · ${typeof LEGAL !== 'undefined' ? LEGAL.shortName : 'ИП'} · <a href="docs.html">Документы</a></p>
+          <p>© 2026 GETSTUFF · ${typeof LEGAL !== 'undefined' ? LEGAL.shortName : 'ИП'} · ИНН ${typeof LEGAL !== 'undefined' ? LEGAL.inn : ''}</p>
+          <p class="footer__legal-links">
+            <a href="docs.html">Документы</a>
+            <a href="docs.html#privacy">Конфиденциальность</a>
+            <a href="docs.html#consent">Согласие ПДн</a>
+            <a href="docs.html#offer">Оферта</a>
+            <a href="docs.html#return">Возврат</a>
+            <a href="docs.html#bot">Telegram</a>
+            <a href="docs.html#cookies">Cookie</a>
+          </p>
         </div>
       </div>
     </footer>`;
@@ -565,6 +577,9 @@ function initCartPage() {
       </div>
       <div id="cart-summary">${summary.html}</div>
       <a href="checkout.html" class="btn btn--primary btn--block" style="margin-top:16px">Оформить заказ</a>
+      <p class="form-consent" style="margin-top:12px">
+        На следующем шаге потребуется согласие на <a href="docs.html#consent">обработку персональных данных</a> и принятие <a href="docs.html#offer">оферты</a>.
+      </p>
     </div>`;
 
   const cityInput = document.getElementById('cart-city');

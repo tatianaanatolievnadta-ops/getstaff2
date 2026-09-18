@@ -156,13 +156,13 @@
       <div class="newsletter__title">Будьте в курсе новинок и акций</div>
       <div class="newsletter__text">Подпишитесь и получите скидку 5% на первый заказ</div>
       <form class="newsletter__form" id="newsletter-form">
-        <input type="email" placeholder="Ваш email" required>
+        <input type="email" name="email" placeholder="Ваш email" required>
         <button type="submit" class="btn btn--accent">Подписаться</button>
+        <label class="form-consent" style="flex:1 1 100%;justify-content:center;margin-top:4px">
+          <input type="checkbox" name="pd_consent" required>
+          <span>Соглашаюсь на <a href="docs.html#consent">обработку персональных данных</a> и получение рекламных сообщений</span>
+        </label>
       </form>
-      <label class="form-consent" style="justify-content:center;margin-top:12px;max-width:520px;margin-left:auto;margin-right:auto">
-        <input type="checkbox" id="newsletter-consent" required form="newsletter-form">
-        <span>Соглашаюсь на <a href="docs.html#consent">обработку персональных данных</a> и получение рекламных сообщений</span>
-      </label>
     </div>
   </section>
 
