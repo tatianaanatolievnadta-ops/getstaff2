@@ -347,7 +347,15 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
     padding: 12px 48px 12px 14px;
     font-size: 0.9375rem;
   }
-  .header__actions { display: none !important; }
+  .header__actions {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+  }
   .header__menu-btn { padding: 4px; }
 }
 
