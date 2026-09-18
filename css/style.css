@@ -75,36 +75,6 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 @media (max-width: 767px) {
   .top-bar__links { display: none; }
 
-  .header__actions { display: none; }
-  .header__inner {
-    gap: 10px 8px;
-    padding: 10px 12px;
-  }
-  .header__logo {
-    flex: 1;
-    min-width: 0;
-    max-width: none;
-    border-right: none;
-    padding-right: 0;
-    margin-right: 0;
-    gap: 8px;
-  }
-  .header__logo-mark {
-    width: 34px;
-    height: 34px;
-    padding: 2px;
-  }
-  .header__logo-wordmark {
-    height: 28px;
-    max-width: min(58vw, 210px);
-  }
-  .header__menu-btn { padding: 4px; }
-  .header__search input {
-    min-height: 46px;
-    padding: 12px 48px 12px 14px;
-    font-size: 0.9375rem;
-  }
-
   .hero { padding: 10px 12px 0; }
   .hero__slide {
     min-height: 200px;
@@ -330,6 +300,55 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Mobile header: меню + логотип, без кучи «Опт/Избранное/Корзина» */
+@media (max-width: 767px) {
+  .header__inner {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "menu logo"
+      "search search";
+    gap: 10px 12px;
+    padding: 10px 12px 12px;
+    align-items: center;
+  }
+  .nav-menu { grid-area: menu; order: unset; }
+  .header__logo {
+    grid-area: logo;
+    order: unset;
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    border-right: none;
+    padding-right: 0;
+    margin-right: 0;
+    gap: 8px;
+  }
+  .header__logo-mark {
+    width: 36px;
+    height: 36px;
+    padding: 2px;
+  }
+  .header__logo-wordmark {
+    height: 30px;
+    max-width: calc(100vw - 88px);
+  }
+  .header__search {
+    grid-area: search;
+    order: unset;
+    flex: none;
+    width: 100%;
+  }
+  .header__search input {
+    min-height: 46px;
+    padding: 12px 48px 12px 14px;
+    font-size: 0.9375rem;
+  }
+  .header__actions { display: none !important; }
+  .header__menu-btn { padding: 4px; }
 }
 
 /* Search suggestions */
