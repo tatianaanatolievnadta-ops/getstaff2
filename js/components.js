@@ -60,6 +60,7 @@ function renderNavMenuPanel() {
           <div class="nav-menu__title">Разделы</div>
           <ul>
             <li><a href="index.html#products">Популярное</a></li>
+            <li><a href="articles.html">Статьи</a></li>
             <li><a href="wholesale.html">Оптовым клиентам</a></li>
             <li><a href="index.html#delivery">Доставка</a></li>
             <li><a href="docs.html">Документы</a></li>
@@ -88,6 +89,7 @@ function renderHeader() {
         <div class="container">
           <a href="tel:${SITE.phone.replace(/\D/g,'')}" class="top-bar__phone">${SITE.phone}</a>
           <div class="top-bar__links">
+            <a href="articles.html">Статьи</a>
             <a href="docs.html">Документы</a>
             <a href="docs.html#privacy">Конфиденциальность</a>
             <a href="docs.html#offer">Оферта</a>
@@ -232,6 +234,7 @@ function renderFooter() {
               <li><a href="docs.html#delivery">Доставка и оплата</a></li>
               <li><a href="docs.html#return">Возврат товара</a></li>
               <li><a href="docs.html">Документы</a></li>
+              <li><a href="articles.html">Статьи</a></li>
               <li><a href="#" onclick="downloadPriceList();return false">Прайс-лист</a></li>
             </ul>
           </div>
@@ -262,6 +265,7 @@ function renderFooter() {
           <p>© 2026 GETSTUFF · ${typeof LEGAL !== 'undefined' ? LEGAL.shortName : 'ИП'} · ИНН ${typeof LEGAL !== 'undefined' ? LEGAL.inn : ''}</p>
           <p class="footer__legal-links">
             <a href="docs.html">Документы</a>
+            <a href="articles.html">Статьи</a>
             <a href="docs.html#privacy">Конфиденциальность</a>
             <a href="docs.html#consent">Согласие ПДн</a>
             <a href="docs.html#offer">Оферта</a>

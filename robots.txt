@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tatianaanatolievnadta-ops.github.io/getstaff2/sitemap.xml
