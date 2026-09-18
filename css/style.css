@@ -302,15 +302,15 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   justify-content: center;
 }
 
-/* Mobile header: меню + логотип, без кучи «Опт/Избранное/Корзина» */
+/* Mobile header: меню · лого · иконки (без подписей) · поиск снизу */
 @media (max-width: 767px) {
   .header__inner {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     grid-template-areas:
-      "menu logo"
-      "search search";
-    gap: 10px 12px;
+      "menu logo actions"
+      "search search search";
+    gap: 10px 8px;
     padding: 10px 12px 12px;
     align-items: center;
   }
@@ -319,22 +319,22 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
     grid-area: logo;
     order: unset;
     flex: none;
-    width: 100%;
+    width: auto;
     max-width: 100%;
     min-width: 0;
     border-right: none;
     padding-right: 0;
     margin-right: 0;
-    gap: 8px;
+    gap: 6px;
   }
   .header__logo-mark {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     padding: 2px;
   }
   .header__logo-wordmark {
-    height: 30px;
-    max-width: calc(100vw - 88px);
+    height: 26px;
+    max-width: 100%;
   }
   .header__search {
     grid-area: search;
@@ -348,13 +348,37 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
     font-size: 0.9375rem;
   }
   .header__actions {
+    grid-area: actions;
+    order: unset;
+    display: flex !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
+    gap: 0;
+    margin-left: 0;
+    flex-shrink: 0;
+  }
+  .header__action {
+    padding: 6px 7px;
+    min-width: 40px;
+  }
+  .header__action svg {
+    width: 22px;
+    height: 22px;
+  }
+  /* Только иконки — подписи «Опт/Избранное/Корзина» в нижней панели */
+  .header__action > span:not(.header__badge):not(.header__wholesale-badge) {
     display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    position: absolute !important;
+  }
+  .header__wholesale-badge {
+    top: 2px;
+    right: 2px;
+    min-width: 14px;
+    height: 14px;
+    font-size: 0.5rem;
   }
   .header__menu-btn { padding: 4px; }
 }
