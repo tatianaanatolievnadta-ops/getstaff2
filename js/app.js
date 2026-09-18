@@ -142,14 +142,18 @@ function initHeroSlider() {
   function paintSlide(index) {
     const slide = HERO_SLIDES[index];
     const img = slide.image || getLocalProductImagePath(slide.wbId);
-    slideEl.innerHTML = `
-      ${slide.badge ? `<span class="hero__badge">${slide.badge}</span>` : ''}
-      <div class="hero__media" style="background-image:url('${img}')"></div>
-      <div class="hero__content">
+    const content = slide.hideText
+      ? `<a href="${slide.link}" class="hero__hit" aria-label="В каталог"></a>`
+      : `<div class="hero__content">
         <h1 class="hero__title">${slide.title}</h1>
         <p class="hero__subtitle">${slide.subtitle}</p>
         <a href="${slide.link}" class="btn btn--accent">Смотреть</a>
-      </div>
+      </div>`;
+    slideEl.classList.toggle('hero__slide--brand', !!slide.hideText);
+    slideEl.innerHTML = `
+      ${slide.badge ? `<span class="hero__badge">${slide.badge}</span>` : ''}
+      <div class="hero__media" style="background-image:url('${img}')"></div>
+      ${content}
     `;
     dotsEl.querySelectorAll('.hero__dot').forEach((dot, i) => {
       dot.classList.toggle('active', i === index);

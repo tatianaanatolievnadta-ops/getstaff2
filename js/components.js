@@ -103,11 +103,8 @@ function renderHeader() {
             ${renderNavMenuPanel()}
           </div>
           <a href="index.html" class="header__logo">
-            <img class="header__logo-mark" src="assets/brand/logo-mark.png" alt="" width="36" height="36">
-            <span class="header__logo-text">
-              <span class="header__logo-name">GETSTUFF</span>
-              <span class="header__logo-tag">${SITE.logoTag || SITE.tagline}</span>
-            </span>
+            <img class="header__logo-mark" src="assets/brand/logo-mark.png" alt="" width="40" height="40">
+            <img class="header__logo-wordmark" src="assets/brand/logo-full.png" alt="GETSTUFF">
           </a>
           <div class="header__search">
             <input type="search" id="search-input" placeholder="Искать крепёж, саморезы, гвозди..." autocomplete="off">
@@ -254,7 +251,9 @@ function renderFooter() {
           </div>
         </div>
         <div class="footer__bottom">
-          <div class="footer__logo">GETSTUFF</div>
+          <div class="footer__logo">
+            <img src="assets/brand/logo-full.png" alt="GETSTUFF" class="footer__logo-img">
+          </div>
           <p>© 2026 GETSTUFF. Строительный крепёж оптом и в розницу.</p>
         </div>
       </div>

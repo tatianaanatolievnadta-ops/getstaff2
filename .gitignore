@@ -10,3 +10,8 @@ tools/
 .DS_Store
 Thumbs.db
 *.log
+
+# Huge client source packs (keep processed brand assets only)
+assets/brand/from-client/
+assets/brand/preview/
+docs/_logos_list.txt
