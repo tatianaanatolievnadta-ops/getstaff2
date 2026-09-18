@@ -115,7 +115,7 @@ function renderProductImage(product, className = '') {
   return `<img src="${local}" data-remote="${remote}" alt="${product.name}" class="${className}" loading="lazy" ${imgOnErrorAttr()}><span class="img-fallback" style="display:none">${fallback}</span>`;
 }
 
-const SITE_DISCOUNT = 0.2;
+const SITE_DISCOUNT = 0.15;
 
 function getWbPrice(product) {
   return product?.price || 0;
@@ -137,7 +137,7 @@ function renderProductPrices(product, large = false) {
   const sitePrice = getSitePrice(product);
   const tierId = typeof getDisplayTier === 'function' ? getDisplayTier() : 'retail';
   const tier = typeof getTierInfo === 'function' ? getTierInfo(tierId) : null;
-  const discountPct = tier ? Math.round(tier.discount * 100) : 20;
+  const discountPct = tier ? Math.round(tier.discount * 100) : Math.round(SITE_DISCOUNT * 100);
   const rowClass = large ? 'product-info__price-row' : 'product-card__price-row';
   const priceClass = large ? 'product-info__price product-info__price--site' : 'product-card__price product-card__price--site';
   const oldClass = large ? 'product-info__old-price' : 'product-card__old-price';
@@ -193,7 +193,7 @@ function renderBadge(badge, product) {
 
 function renderProductCard(product) {
   const favClass = isFavorite(product.id) ? ' active' : '';
-  const badgeLabel = (typeof isWholesaleBuyer === 'function' && isWholesaleBuyer()) ? 'Опт' : '−20%';
+  const badgeLabel = (typeof isWholesaleBuyer === 'function' && isWholesaleBuyer()) ? 'Опт' : `−${Math.round(SITE_DISCOUNT * 100)}%`;
   return `
     <div class="product-card" data-id="${product.id}">
       <div class="product-card__badges">

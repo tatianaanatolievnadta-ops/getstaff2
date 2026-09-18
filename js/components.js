@@ -17,7 +17,7 @@ function renderBuyOptions(opts = {}) {
         </div>
         <div class="buy-options__card buy-options__card--site">
           <div class="buy-options__label buy-options__label--site">Сайт GETSTUFF</div>
-          <div class="buy-options__name">Со скидкой −20%</div>
+          <div class="buy-options__name">Со скидкой −15%</div>
           <p class="buy-options__text">
             Дешевле, чем на WB. Отправка <strong>1 раз в неделю</strong>.
             Способ и детали доставки <strong>согласовываем с менеджером</strong> — подберём удобный для вас вариант.
@@ -446,7 +446,7 @@ function initProductPage() {
       </div>
 
       <div class="product-actions">
-        <button class="btn btn--primary" onclick="addToCart('${product.id}', parseInt(document.getElementById('product-qty').value))">В корзину (−20%)</button>
+        <button class="btn btn--primary" onclick="addToCart('${product.id}', parseInt(document.getElementById('product-qty').value))">В корзину (−${Math.round(SITE_DISCOUNT * 100)}%)</button>
         <a href="${getWbProductUrl(product.wbId)}" target="_blank" rel="noopener" class="btn btn--wb btn--wb-lg">Купить на Wildberries</a>
         <button class="btn btn--icon" onclick="toggleFavorite('${product.id}')">♡</button>
       </div>

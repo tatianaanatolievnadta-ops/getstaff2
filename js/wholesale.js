@@ -11,9 +11,9 @@ const WHOLESALE_TIERS = {
     name: 'Розница',
     badge: 'Розница',
     maxSum: 20000,
-    discount: 0.2,
+    discount: 0.15,
     summary: 'До 20 000 ₽',
-    description: 'Стандартные цены сайта со скидкой 20% от Wildberries',
+    description: 'Стандартные цены сайта со скидкой 15% от Wildberries',
   },
   wholesale: {
     id: 'wholesale',
