@@ -238,6 +238,10 @@ function renderWholesaleLoginBlock() {
           <label for="ws-comment">Что нужно / объём</label>
           <textarea id="ws-comment" name="comment" rows="3" placeholder="Например: саморезы кровельные, от 50 коробок"></textarea>
         </div>
+        <label class="form-consent">
+          <input type="checkbox" name="pd_consent" required>
+          <span>Соглашаюсь на <a href="docs.html#consent" target="_blank" rel="noopener">обработку персональных данных</a> и принимаю <a href="docs.html#offer" target="_blank" rel="noopener">оферту</a></span>
+        </label>
         <button type="submit" class="btn btn--primary btn--block">Отправить заявку на опт</button>
       </form>
       <button type="button" class="btn btn--outline btn--block" style="margin-top:10px" onclick="downloadPriceList()">

@@ -62,6 +62,7 @@ function renderNavMenuPanel() {
             <li><a href="index.html#products">Популярное</a></li>
             <li><a href="wholesale.html">Оптовым клиентам</a></li>
             <li><a href="index.html#delivery">Доставка</a></li>
+            <li><a href="docs.html">Документы</a></li>
             <li><a href="index.html#about">О компании</a></li>
             <li><a href="#contacts">Контакты</a></li>
             <li><a href="favorites.html">Избранное</a></li>
@@ -225,18 +226,19 @@ function renderFooter() {
             <div class="footer__col-title">Покупателям</div>
             <ul>
               <li><a href="wholesale.html">Оптовым клиентам</a></li>
-              <li><a href="#delivery">Доставка и оплата</a></li>
-              <li><a href="#">Возврат товара</a></li>
+              <li><a href="docs.html#delivery">Доставка и оплата</a></li>
+              <li><a href="docs.html#return">Возврат товара</a></li>
+              <li><a href="docs.html">Документы</a></li>
               <li><a href="#" onclick="downloadPriceList();return false">Прайс-лист</a></li>
             </ul>
           </div>
           <div class="footer__col">
             <div class="footer__col-title">Компания</div>
             <ul>
-              <li><a href="#about">О нас</a></li>
+              <li><a href="index.html#about">О нас</a></li>
               <li><a href="#contacts">Контакты</a></li>
-              <li><a href="#">Отзывы</a></li>
-              <li><a href="#">Вакансии</a></li>
+              <li><a href="docs.html#privacy">Политика конфиденциальности</a></li>
+              <li><a href="docs.html#offer">Оферта</a></li>
             </ul>
           </div>
           <div class="footer__col">
@@ -254,7 +256,7 @@ function renderFooter() {
           <div class="footer__logo">
             <img src="assets/brand/logo-full.png" alt="GETSTUFF" class="footer__logo-img">
           </div>
-          <p>© 2026 GETSTUFF. Строительный крепёж оптом и в розницу.</p>
+          <p>© 2026 GETSTUFF · ${typeof LEGAL !== 'undefined' ? LEGAL.shortName : 'ИП'} · <a href="docs.html">Документы</a></p>
         </div>
       </div>
     </footer>`;
@@ -481,6 +483,10 @@ function initProductPage() {
         <form class="quick-order__form" onsubmit="submitQuickOrder(event, '${product.id}')">
           <input type="tel" placeholder="+7 (___) ___-__-__" required>
           <button type="submit" class="btn btn--accent btn--sm">Заказать</button>
+          <label class="form-consent" style="flex:1 1 100%;margin-top:8px">
+            <input type="checkbox" name="pd_consent" required>
+            <span>Согласие на <a href="docs.html#consent" target="_blank" rel="noopener">обработку данных</a></span>
+          </label>
         </form>
       </div>
 

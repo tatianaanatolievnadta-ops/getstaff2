@@ -10,6 +10,20 @@ const SITE = {
   description: 'ТМ «Getstuff» — российский бренд качественных товаров для ремонта и строительства.',
 };
 
+/** Реквизиты продавца (как на Wildberries, seller 55354) */
+const LEGAL = {
+  name: 'Индивидуальный предприниматель Кизиков Александр Геннадьевич',
+  shortName: 'ИП Кизиков А. Г.',
+  inn: '781705990060',
+  ogrnip: '308784710500154',
+  trademark: 'GETSTUFF',
+  email: 'metiz@гетстафф.рф',
+  phone: '+7 (911) 910-33-44',
+  site: 'https://tatianaanatolievnadta-ops.github.io/getstaff2/',
+  wbSeller: 'https://www.wildberries.ru/seller/55354',
+  docsUpdated: '18.09.2026',
+};
+
 // Загружается из products.data.js (генерируется scripts/sync-wb.mjs)
 let CATEGORIES = [];
 let PRODUCTS = [];
