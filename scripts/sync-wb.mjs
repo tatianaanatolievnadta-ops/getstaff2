@@ -106,8 +106,18 @@ function parseSpecs(name) {
   const specs = {};
   const sizeMatch = name.match(/(\d+[,.]?\d*)\s*[xх×]\s*(\d+[,.]?\d*)/i);
   if (sizeMatch) {
-    specs.diameter = sizeMatch[1].replace('.', ',') + ' мм';
-    specs.length = sizeMatch[2].replace('.', ',') + ' мм';
+    const a = parseFloat(sizeMatch[1].replace(',', '.'));
+    const b = parseFloat(sizeMatch[2].replace(',', '.'));
+    const fmt = (n) => String(n).replace('.', ',') + ' мм';
+    // В названиях WB: «длина × диаметр» (45×3,5) или «диаметр × длина» (4,8×29).
+    // Диаметр крепежа обычно ≤ 10 мм, длина больше.
+    if (a <= 10 && b > a) {
+      specs.diameter = fmt(a);
+      specs.length = fmt(b);
+    } else {
+      specs.length = fmt(a);
+      specs.diameter = fmt(b);
+    }
   }
   const packMatch = name.match(/(\d+)\s*шт/i);
   if (packMatch) specs.pack = packMatch[1] + ' шт.';

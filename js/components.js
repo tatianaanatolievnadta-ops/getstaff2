@@ -289,10 +289,24 @@ function initCatalogPage() {
     if (searchInput) searchInput.value = searchQuery;
   }
 
-  const filters = { materials: new Set(), diameters: new Set() };
+  function sortMmLabels(values) {
+    return [...values].sort((a, b) => {
+      const na = parseFloat(String(a).replace(',', '.')) || 0;
+      const nb = parseFloat(String(b).replace(',', '.')) || 0;
+      return na - nb;
+    });
+  }
+
+  function productFinish(p) {
+    return p.specs?.coating || p.specs?.material || '';
+  }
+
+  const filters = { finishes: new Set(), diameters: new Set(), lengths: new Set() };
   PRODUCTS.forEach(p => {
-    if (p.specs.material) filters.materials.add(p.specs.material);
-    if (p.specs.diameter) filters.diameters.add(p.specs.diameter);
+    const finish = productFinish(p);
+    if (finish) filters.finishes.add(finish);
+    if (p.specs?.diameter) filters.diameters.add(p.specs.diameter);
+    if (p.specs?.length) filters.lengths.add(p.specs.length);
   });
 
   const filtersPanel = document.getElementById('filters-panel');
@@ -308,18 +322,26 @@ function initCatalogPage() {
         `).join('')}
       </div>
       <div class="filter-group">
-        <div class="filter-group__title">Материал</div>
-        ${[...filters.materials].map(m => `
+        <div class="filter-group__title">Покрытие</div>
+        ${[...filters.finishes].sort((a, b) => a.localeCompare(b, 'ru')).map(m => `
           <label class="filter-option">
-            <input type="checkbox" name="material" value="${m}"> ${m}
+            <input type="checkbox" name="finish" value="${m}"> ${m}
           </label>
         `).join('')}
       </div>
       <div class="filter-group">
         <div class="filter-group__title">Диаметр</div>
-        ${[...filters.diameters].map(d => `
+        ${sortMmLabels(filters.diameters).map(d => `
           <label class="filter-option">
             <input type="checkbox" name="diameter" value="${d}"> ${d}
+          </label>
+        `).join('')}
+      </div>
+      <div class="filter-group">
+        <div class="filter-group__title">Длина</div>
+        ${sortMmLabels(filters.lengths).map(l => `
+          <label class="filter-option">
+            <input type="checkbox" name="length" value="${l}"> ${l}
           </label>
         `).join('')}
       </div>
@@ -345,15 +367,17 @@ function initCatalogPage() {
     if (searchQuery) result = searchProducts(searchQuery);
 
     const categories = [...document.querySelectorAll('input[name="category"]:checked')].map(el => el.value);
-    const materials = [...document.querySelectorAll('input[name="material"]:checked')].map(el => el.value);
+    const finishes = [...document.querySelectorAll('input[name="finish"]:checked')].map(el => el.value);
     const diameters = [...document.querySelectorAll('input[name="diameter"]:checked')].map(el => el.value);
+    const lengths = [...document.querySelectorAll('input[name="length"]:checked')].map(el => el.value);
     const priceMin = parseInt(document.getElementById('price-min')?.value) || 0;
     const priceMax = parseInt(document.getElementById('price-max')?.value) || Infinity;
     const inStockOnly = document.getElementById('in-stock-only')?.checked;
 
     if (categories.length) result = result.filter(p => categories.includes(p.category));
-    if (materials.length) result = result.filter(p => materials.includes(p.specs.material));
-    if (diameters.length) result = result.filter(p => diameters.includes(p.specs.diameter));
+    if (finishes.length) result = result.filter(p => finishes.includes(productFinish(p)));
+    if (diameters.length) result = result.filter(p => diameters.includes(p.specs?.diameter));
+    if (lengths.length) result = result.filter(p => lengths.includes(p.specs?.length));
     result = result.filter(p => p.price >= priceMin && p.price <= priceMax);
     if (inStockOnly) result = result.filter(p => p.inStock);
 
