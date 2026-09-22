@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -9,7 +9,7 @@
   <meta name="description" content="Интернет-магазин GETSTUFF. Саморезы кровельные, по дереву, по металлу, гвозди. Российский бренд строительного крепежа.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260918dd">
+  <link rel="stylesheet" href="css/style.css?v=20260922a">
 </head>
 <body>
   <!-- Hero-слайдер -->
@@ -137,7 +137,7 @@
       </div>
       <div class="delivery-cta">
         <div class="delivery-cta__text">
-          <strong>Оформление на сайте — через заявку менеджеру.</strong>
+          <strong>Оформление заказа на сайте — через заявку менеджеру.</strong>
           Также осуществляем оптовые продажи:
           <a href="mailto:metiz@гетстафф.рф">metiz@гетстафф.рф</a>,
           <a href="tel:+79119103344">+7 (911) 910-33-44</a>
@@ -153,12 +153,12 @@
   <!-- Подписка выше «О компании» (п.7) -->
   <section class="newsletter">
     <div class="container">
-      <div class="newsletter__title">Будьте в курсе новинок и акций</div>
-      <div class="newsletter__text">Подпишитесь и получите скидку 5% на первый заказ</div>
+      <div class="newsletter__title">Подпишитесь и получите скидку 5% на первый заказ</div>
+      <div class="newsletter__text">Будьте в курсе новинок и акций</div>
       <form class="newsletter__form" id="newsletter-form">
         <input type="email" name="email" placeholder="Ваш email" required>
         <button type="submit" class="btn btn--accent">Подписаться</button>
-        <label class="form-consent" style="flex:1 1 100%;justify-content:center;margin-top:4px">
+        <label class="form-consent">
           <input type="checkbox" name="pd_consent" required>
           <span>Соглашаюсь на <a href="docs.html#consent">обработку персональных данных</a> и получение рекламных сообщений</span>
         </label>
@@ -179,7 +179,7 @@
           </p>
         </div>
         <div class="about__visual">
-          <img src="" alt="GETSTUFF" id="about-img" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius)" onerror="this.parentElement.textContent='🔩'">
+          <img src="assets/brand/hero-wholesale.jpg" alt="GETSTUFF" id="about-img" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius)" onerror="this.style.display='none'">
         </div>
       </div>
     </div>
@@ -199,7 +199,6 @@
     initHomePage();
     const buyHome = document.getElementById('buy-options-home');
     if (buyHome) buyHome.innerHTML = renderBuyOptions();
-    document.getElementById('about-img').src = getWbImage(848081947);
   </script>
 </body>
 </html>

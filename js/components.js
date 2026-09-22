@@ -27,24 +27,46 @@ function renderBuyOptions(opts = {}) {
     </div>`;
 }
 
+/** Relative paths from nested pages (e.g. /articles/*.html) need ../ */
+function getSitePrefix() {
+  try {
+    if (/\/articles\//.test(window.location.pathname || '')) return '../';
+  } catch (e) {}
+  return '';
+}
+
+function siteHref(path) {
+  if (!path) return path;
+  if (/^(https?:|tel:|mailto:|#|javascript:)/i.test(path)) return path;
+  return getSitePrefix() + path;
+}
+
+const CATEGORY_NAV_IMAGES = {
+  'roof-screws': 'assets/brand/cat-roof.jpg',
+  'wood-screws': 'assets/brand/cat-wood.jpg',
+  'metal-screws': 'assets/brand/cat-metal.jpg',
+  'nails': 'assets/brand/cat-nails.jpg',
+};
+
 function getSvgIcon(name) {
   const icons = {
-    menu: '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>',
-    search: '<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M17 17l-4-4"/></svg>',
-    user: '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="8" r="4"/><path d="M4 20c0-4 3-7 7-7s7 3 7 7"/></svg>',
-    cart: '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M2 2h3l2 12h11l3-8H6"/></svg>',
-    home: '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10l9-7 9 7v10a1 1 0 01-1 1H4a1 1 0 01-1-1V10z"/></svg>',
-    catalog: '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>',
-    heart: '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-8-4.5-8-11a5 5 0 019-3 5 5 0 019 3c0 6.5-8 11-8 11z"/></svg>',
-    wholesale: '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 8l9-4 9 4v9l-9 4-9-4V8z"/><path d="M3 8l9 4 9-4M12 12v9"/></svg>',
-    filter: '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4h14M4 10h10M7 16h4"/></svg>',
+    menu: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>',
+    search: '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M17 17l-4-4"/></svg>',
+    user: '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="8" r="4"/><path d="M4 20c0-4 3-7 7-7s7 3 7 7"/></svg>',
+    cart: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M2 2h3l2 12h11l3-8H6"/></svg>',
+    home: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10l9-7 9 7v10a1 1 0 01-1 1H4a1 1 0 01-1-1V10z"/></svg>',
+    catalog: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>',
+    heart: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" overflow="visible"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>',
+    wholesale: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 8l9-4 9 4v9l-9 4-9-4V8z"/><path d="M3 8l9 4 9-4M12 12v9"/></svg>',
+    filter: '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4h14M4 10h10M7 16h4"/></svg>',
   };
   return icons[name] || '';
 }
 
 function renderNavMenuPanel() {
+  const p = getSitePrefix();
   const cats = (CATEGORIES || []).slice(0, 8).map(c =>
-    `<li><a href="catalog.html?cat=${c.id}">${c.name}</a></li>`
+    `<li><a href="${p}catalog.html?cat=${c.id}">${c.name}</a></li>`
   ).join('');
   return `
     <div class="nav-menu__panel" id="nav-menu-panel" hidden>
@@ -52,21 +74,21 @@ function renderNavMenuPanel() {
         <div class="nav-menu__col">
           <div class="nav-menu__title">Каталог</div>
           <ul>
-            <li><a href="catalog.html"><strong>Весь каталог</strong></a></li>
+            <li><a href="${p}catalog.html"><strong>Весь каталог</strong></a></li>
             ${cats}
           </ul>
         </div>
         <div class="nav-menu__col">
           <div class="nav-menu__title">Разделы</div>
           <ul>
-            <li><a href="index.html#products">Популярное</a></li>
-            <li><a href="articles.html">Статьи</a></li>
-            <li><a href="wholesale.html">Оптовым клиентам</a></li>
-            <li><a href="index.html#delivery">Доставка</a></li>
-            <li><a href="docs.html">Документы</a></li>
-            <li><a href="index.html#about">О компании</a></li>
+            <li><a href="${p}index.html#products">Популярное</a></li>
+            <li><a href="${p}articles.html">Статьи</a></li>
+            <li><a href="${p}wholesale.html">Оптовым клиентам</a></li>
+            <li><a href="${p}index.html#delivery">Доставка</a></li>
+            <li><a href="${p}docs.html">Документы</a></li>
+            <li><a href="${p}index.html#about">О компании</a></li>
             <li><a href="#contacts">Контакты</a></li>
-            <li><a href="favorites.html">Избранное</a></li>
+            <li><a href="${p}favorites.html">Избранное</a></li>
           </ul>
         </div>
         <div class="nav-menu__col">
@@ -74,7 +96,7 @@ function renderNavMenuPanel() {
           <ul>
             <li><a href="tel:${SITE.phone.replace(/\D/g,'')}">${SITE.phone}</a></li>
             <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
-            <li><a href="checkout.html">Оставить заявку</a></li>
+            <li><a href="${p}checkout.html">Оставить заявку</a></li>
             <li><a href="${SITE.wbSeller}" target="_blank" rel="noopener">Wildberries</a></li>
           </ul>
         </div>
@@ -83,19 +105,20 @@ function renderNavMenuPanel() {
 }
 
 function renderHeader() {
+  const p = getSitePrefix();
   return `
     <div class="site-chrome">
       <div class="top-bar">
         <div class="container">
           <a href="tel:${SITE.phone.replace(/\D/g,'')}" class="top-bar__phone">${SITE.phone}</a>
           <div class="top-bar__links">
-            <a href="articles.html">Статьи</a>
-            <a href="docs.html">Документы</a>
-            <a href="docs.html#privacy">Конфиденциальность</a>
-            <a href="docs.html#offer">Оферта</a>
-            <a href="index.html#about">О компании</a>
-            <a href="wholesale.html">Опт</a>
-            <a href="docs.html#delivery">Доставка</a>
+            <a href="${p}articles.html">Статьи</a>
+            <a href="${p}docs.html">Документы</a>
+            <a href="${p}docs.html#privacy">Конфиденциальность</a>
+            <a href="${p}docs.html#offer">Оферта</a>
+            <a href="${p}index.html#about">О компании</a>
+            <a href="${p}wholesale.html">Опт</a>
+            <a href="${p}docs.html#delivery">Доставка</a>
             <a href="#contacts">Контакты</a>
             <a href="${SITE.wbSeller}" target="_blank" rel="noopener">Wildberries</a>
           </div>
@@ -108,9 +131,9 @@ function renderHeader() {
             <button type="button" class="header__catalog-btn" id="nav-catalog-toggle" aria-expanded="false" aria-controls="nav-menu-panel">${getSvgIcon('catalog')} Каталог</button>
             ${renderNavMenuPanel()}
           </div>
-          <a href="index.html" class="header__logo">
-            <img class="header__logo-mark" src="assets/brand/logo-mark.png" alt="" width="40" height="40">
-            <img class="header__logo-wordmark" src="assets/brand/logo-full.png" alt="GETSTUFF">
+          <a href="${p}index.html" class="header__logo">
+            <img class="header__logo-mark" src="${p}assets/brand/logo-mark.png" alt="" width="40" height="40">
+            <img class="header__logo-wordmark" src="${p}assets/brand/logo-full.png" alt="GETSTUFF">
           </a>
           <div class="header__search">
             <input type="search" id="search-input" placeholder="Искать крепёж, саморезы, гвозди..." autocomplete="off">
@@ -118,16 +141,16 @@ function renderHeader() {
             <div class="search-suggestions" id="search-suggestions"></div>
           </div>
           <div class="header__actions">
-            <a href="wholesale.html" class="header__action header__action--desktop header__action--wholesale">
+            <a href="${p}wholesale.html" class="header__action header__action--desktop header__action--wholesale">
               ${getSvgIcon('wholesale')}
               <span data-wholesale-label>Опт</span>
               <span class="header__wholesale-badge" data-wholesale-badge style="display:none">✓</span>
             </a>
-            <a href="favorites.html" class="header__action header__action--desktop">
+            <a href="${p}favorites.html" class="header__action header__action--desktop header__action--fav">
               ${getSvgIcon('heart')}
               <span>Избранное</span>
             </a>
-            <a href="cart.html" class="header__action header__action--desktop">
+            <a href="${p}cart.html" class="header__action header__action--desktop">
               ${getSvgIcon('cart')}
               <span class="header__badge" style="display:none">0</span>
               <span>Корзина</span>
@@ -190,26 +213,27 @@ function initNavMenu() {
 }
 
 function renderBottomNav() {
+  const p = getSitePrefix();
   return `
     <nav class="bottom-nav">
-      <a href="index.html" class="bottom-nav__item" data-nav="home">
+      <a href="${p}index.html" class="bottom-nav__item" data-nav="home">
         ${getSvgIcon('home')}
         <span>Главная</span>
       </a>
-      <a href="catalog.html" class="bottom-nav__item" data-nav="catalog">
+      <a href="${p}catalog.html" class="bottom-nav__item" data-nav="catalog">
         ${getSvgIcon('catalog')}
         <span>Каталог</span>
       </a>
-      <a href="cart.html" class="bottom-nav__item" data-nav="cart">
+      <a href="${p}cart.html" class="bottom-nav__item" data-nav="cart">
         ${getSvgIcon('cart')}
         <span class="bottom-nav__badge" style="display:none">0</span>
         <span>Корзина</span>
       </a>
-      <a href="favorites.html" class="bottom-nav__item" data-nav="favorites">
+      <a href="${p}favorites.html" class="bottom-nav__item" data-nav="favorites">
         ${getSvgIcon('heart')}
         <span>Избранное</span>
       </a>
-      <a href="wholesale.html" class="bottom-nav__item" data-nav="wholesale">
+      <a href="${p}wholesale.html" class="bottom-nav__item" data-nav="wholesale">
         ${getSvgIcon('wholesale')}
         <span>Опт</span>
       </a>
@@ -217,6 +241,7 @@ function renderBottomNav() {
 }
 
 function renderFooter() {
+  const p = getSitePrefix();
   return `
     <footer class="footer" id="contacts">
       <div class="container">
@@ -224,27 +249,27 @@ function renderFooter() {
           <div class="footer__col">
             <div class="footer__col-title">Каталог</div>
             <ul>
-              ${CATEGORIES.map(c => `<li><a href="catalog.html?cat=${c.id}">${c.name}</a></li>`).join('')}
+              ${CATEGORIES.map(c => `<li><a href="${p}catalog.html?cat=${c.id}">${c.name}</a></li>`).join('')}
             </ul>
           </div>
           <div class="footer__col">
             <div class="footer__col-title">Покупателям</div>
             <ul>
-              <li><a href="wholesale.html">Оптовым клиентам</a></li>
-              <li><a href="docs.html#delivery">Доставка и оплата</a></li>
-              <li><a href="docs.html#return">Возврат товара</a></li>
-              <li><a href="docs.html">Документы</a></li>
-              <li><a href="articles.html">Статьи</a></li>
+              <li><a href="${p}wholesale.html">Оптовым клиентам</a></li>
+              <li><a href="${p}docs.html#delivery">Доставка и оплата</a></li>
+              <li><a href="${p}docs.html#return">Возврат товара</a></li>
+              <li><a href="${p}docs.html">Документы</a></li>
+              <li><a href="${p}articles.html">Статьи</a></li>
               <li><a href="#" onclick="downloadPriceList();return false">Прайс-лист</a></li>
             </ul>
           </div>
           <div class="footer__col">
             <div class="footer__col-title">Компания</div>
             <ul>
-              <li><a href="index.html#about">О нас</a></li>
+              <li><a href="${p}index.html#about">О нас</a></li>
               <li><a href="#contacts">Контакты</a></li>
-              <li><a href="docs.html#privacy">Политика конфиденциальности</a></li>
-              <li><a href="docs.html#offer">Оферта</a></li>
+              <li><a href="${p}docs.html#privacy">Политика конфиденциальности</a></li>
+              <li><a href="${p}docs.html#offer">Оферта</a></li>
             </ul>
           </div>
           <div class="footer__col">
@@ -252,7 +277,7 @@ function renderFooter() {
             <ul>
               <li><a href="tel:${SITE.phone.replace(/\D/g,'')}">${SITE.phone}</a></li>
               <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
-              <li><a href="checkout.html">Оставить заявку</a></li>
+              <li><a href="${p}checkout.html">Оставить заявку</a></li>
               <li><a href="${SITE.wbSeller}" target="_blank" rel="noopener">Wildberries</a></li>
               <li><a href="${SITE.ozon}" target="_blank" rel="noopener">Ozon</a></li>
             </ul>
@@ -260,18 +285,18 @@ function renderFooter() {
         </div>
         <div class="footer__bottom">
           <div class="footer__logo">
-            <img src="assets/brand/logo-full.png" alt="GETSTUFF" class="footer__logo-img">
+            <img src="${p}assets/brand/logo-full.png" alt="GETSTUFF" class="footer__logo-img">
           </div>
           <p>© 2026 GETSTUFF · ${typeof LEGAL !== 'undefined' ? LEGAL.shortName : 'ИП'} · ИНН ${typeof LEGAL !== 'undefined' ? LEGAL.inn : ''}</p>
           <p class="footer__legal-links">
-            <a href="docs.html">Документы</a>
-            <a href="articles.html">Статьи</a>
-            <a href="docs.html#privacy">Конфиденциальность</a>
-            <a href="docs.html#consent">Согласие ПДн</a>
-            <a href="docs.html#offer">Оферта</a>
-            <a href="docs.html#return">Возврат</a>
-            <a href="docs.html#bot">Telegram</a>
-            <a href="docs.html#cookies">Cookie</a>
+            <a href="${p}docs.html">Документы</a>
+            <a href="${p}articles.html">Статьи</a>
+            <a href="${p}docs.html#privacy">Конфиденциальность</a>
+            <a href="${p}docs.html#consent">Согласие ПДн</a>
+            <a href="${p}docs.html#offer">Оферта</a>
+            <a href="${p}docs.html#return">Возврат</a>
+            <a href="${p}docs.html#bot">Telegram</a>
+            <a href="${p}docs.html#cookies">Cookie</a>
           </p>
         </div>
       </div>
@@ -704,12 +729,17 @@ function renderPromoBanners() {
 function renderCategoryTiles() {
   const el = document.getElementById('categories-grid');
   if (!el) return;
-  el.innerHTML = CATEGORIES.map(c => `
-    <a href="catalog.html?cat=${c.id}" class="category-card">
-      <div class="category-card__bg" style="background-image:url('${getLocalProductImagePath(c.wbId)}')"></div>
+  const p = getSitePrefix();
+  el.innerHTML = CATEGORIES.map(c => {
+    const img = CATEGORY_NAV_IMAGES[c.id] || getLocalProductImagePath(c.wbId);
+    return `
+    <a href="${p}catalog.html?cat=${c.id}" class="category-card">
+      <div class="category-card__media">
+        <div class="category-card__bg" style="background-image:url('${p}${img}')"></div>
+      </div>
       <div class="category-card__label">${c.name}</div>
-    </a>
-  `).join('');
+    </a>`;
+  }).join('');
 }
 
 function initProductTabs() {
