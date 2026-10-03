@@ -3,11 +3,12 @@
 const SITE = {
   phone: '+7 (911) 910-33-44',
   email: 'metiz@гетстафф.рф',
+  origin: 'https://gstmetiz.shop',
   wbSeller: 'https://www.wildberries.ru/seller/55354',
   ozon: 'https://www.ozon.ru',
   tagline: 'Крепёж, которому можно доверять',
   logoTag: 'КРЕПЁЖ · НАДЁЖНО · ОПТОМ',
-  description: 'ТМ «Getstuff» — российский бренд качественных товаров для ремонта и строительства.',
+  description: 'ТМ «Getstuff» — российский бренд качественных товаров для ремонта и строительства. Саморезы кровельные, по дереву, по металлу, гвозди — розница −15% к WB и опт.',
 };
 
 /** Реквизиты продавца (как на Wildberries, seller 55354) */
@@ -19,9 +20,9 @@ const LEGAL = {
   trademark: 'GETSTUFF',
   email: 'metiz@гетстафф.рф',
   phone: '+7 (911) 910-33-44',
-  site: 'https://tatianaanatolievnadta-ops.github.io/getstaff2/',
+  site: 'https://gstmetiz.shop/',
   wbSeller: 'https://www.wildberries.ru/seller/55354',
-  docsUpdated: '18.09.2026',
+  docsUpdated: '03.10.2026',
 };
 
 // Загружается из products.data.js (генерируется scripts/sync-wb.mjs)

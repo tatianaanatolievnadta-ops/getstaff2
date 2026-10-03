@@ -5,9 +5,9 @@ import json
 
 ROOT = Path(r"d:\Getstafff\getstaff2")
 OUT_DIR = ROOT / "articles"
-SITE = "https://tatianaanatolievnadta-ops.github.io/getstaff2"
-CSS = "../css/style.css?v=20260922a"
-CSS_ROOT = "css/style.css?v=20260922a"
+SITE = "https://gstmetiz.shop"
+CSS = "../css/style.css?v=20261003seo"
+CSS_ROOT = "css/style.css?v=20261003seo"
 
 CAT_IMAGES = {
   "Саморезы по дереву": "assets/brand/cat-wood.jpg",
@@ -480,6 +480,13 @@ PAGE_SHELL = """<!DOCTYPE html>
   <meta name="description" content="{description}">
   <meta name="keywords" content="{keywords}">
   <link rel="canonical" href="{canonical}">
+  <meta property="og:title" content="{title} — GETSTUFF">
+  <meta property="og:description" content="{description}">
+  <meta property="og:url" content="{canonical}">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="GETSTUFF">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/png" href="{prefix}assets/brand/logo-mark.png">
   <link rel="apple-touch-icon" href="{prefix}assets/brand/logo-mark.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">

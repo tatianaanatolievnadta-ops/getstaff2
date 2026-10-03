@@ -465,6 +465,7 @@ function initProductPage() {
   }
 
   document.title = product.name + ' — GETSTUFF';
+  if (typeof setProductSeo === 'function') setProductSeo(product);
 
   const specsRows = Object.entries(product.specs).map(([key, val]) => {
     const labels = { diameter: 'Диаметр', length: 'Длина', material: 'Материал', coating: 'Покрытие', standard: 'Стандарт', pack: 'Упаковка', size: 'Размер', thickness: 'Толщина' };
