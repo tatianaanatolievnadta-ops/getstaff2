@@ -57,9 +57,14 @@ async function refreshPricesFromWB() {
     return;
   }
 
-  const ids = PRODUCTS.slice(0, 50).map(p => p.wbId);
+  const ids = PRODUCTS.map(p => p.wbId).filter(Boolean);
   try {
-    const online = await fetchWbPricesBatch(ids);
+    const online = {};
+    const batchSize = 40;
+    for (let i = 0; i < ids.length; i += batchSize) {
+      const chunk = ids.slice(i, i + batchSize);
+      Object.assign(online, await fetchWbPricesBatch(chunk));
+    }
     applyPrices(online);
     localStorage.setItem(PRICES_CACHE_KEY, JSON.stringify({ ts: Date.now(), items: online }));
   } catch {
