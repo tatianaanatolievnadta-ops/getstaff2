@@ -44,8 +44,8 @@ function siteHref(path) {
 const CATEGORY_NAV_IMAGES = {
   'roof-screws': 'assets/brand/cat-roof.jpg',
   'wood-screws': 'assets/brand/cat-wood.jpg',
-  'metal-screws': 'assets/brand/cat-metal.jpg',
-  'nails': 'assets/brand/cat-nails.jpg',
+  'metal-screws': '868628984/1.webp',
+  'nails': '479499362/1.webp',
 };
 
 function getSvgIcon(name) {

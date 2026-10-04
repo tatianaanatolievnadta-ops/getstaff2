@@ -9,15 +9,27 @@ SITE = "https://gstmetiz.shop"
 CSS = "../css/style.css?v=20261003seo"
 CSS_ROOT = "css/style.css?v=20261003seo"
 
-CAT_IMAGES = {
-  "Саморезы по дереву": "assets/brand/cat-wood.jpg",
-  "Кровельные саморезы": "assets/brand/cat-roof.jpg",
-  "Саморезы по металлу": "assets/brand/cat-metal.jpg",
-  "Гвозди": "assets/brand/cat-nails.jpg",
-  "Покрытия": "assets/brand/hero-wood.jpg",
-  "Советы": "assets/brand/hero-wholesale.jpg",
-  "Опт": "assets/brand/hero-wholesale.jpg",
-  "Доставка": "assets/brand/hero-wholesale.jpg",
+ARTICLE_IMAGES = {
+  "kak-vybrat-samorezy-po-derevu": "211763002/1.webp",
+  "samorezy-krovelnye-ral": "848081947/1.webp",
+  "samorezy-po-metallu-ili-derevu": "868628984/1.webp",
+  "zheltyj-cink-ili-chernyj-fosfat": "211763003/1.webp",
+  "kak-otlichit-kachestvennyj-krepezh": "681021423/1.webp",
+  "gvozdi-stroitelnye-razmery": "479499362/1.webp",
+  "opt-krepezha-kogda-vygodno": "assets/brand/hero-wholesale.jpg",
+  "samorezy-dlya-gipsokartona": "868628985/1.webp",
+  "dlina-i-diametr-samoreza": "211763002/3.webp",
+  "epdm-prokladka-krovelnyh": "848081945/1.webp",
+  "rzhavchina-na-samorezah": "868628986/1.webp",
+  "upakovka-krepezha-kg-ili-sht": "479499362/3.webp",
+  "samorezy-dlya-osb-i-dsp": "211763002/2.webp",
+  "krepezh-dlya-metallocherepicy": "848081946/1.webp",
+  "shutupy-i-samorezy-raznica": "868628987/1.webp",
+  "kak-rasschitat-kolichestvo-samorezov": "681021424/1.webp",
+  "dostavka-krepezha-sajt-ili-marketplace": "1003180408/1.webp",
+  "oshibki-pri-vybore-krovelnyh": "681021425/1.webp",
+  "samorezy-35-i-42": "868628988/1.webp",
+  "chek-list-zakupki-krepezha": "100963385/1.webp",
 }
 
 ARTICLES = [
@@ -522,7 +534,7 @@ def main():
     # index
     cards = []
     for a in ARTICLES:
-        img = CAT_IMAGES.get(a["category"], "assets/brand/hero-wholesale.jpg")
+        img = ARTICLE_IMAGES.get(a["slug"], "assets/brand/hero-wholesale.jpg")
         cards.append(f"""
       <a class="article-card" href="articles/{a['slug']}.html">
         <div class="article-card__media"><img src="{img}" alt="" loading="lazy"></div>
