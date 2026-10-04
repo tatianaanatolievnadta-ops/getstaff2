@@ -104,7 +104,7 @@
 
   window.injectOrgJsonLd = function injectOrgJsonLd() {
     const phone = (typeof SITE !== 'undefined' && SITE.phone) || '+7 (911) 910-33-44';
-    const email = (typeof SITE !== 'undefined' && SITE.email) || 'metiz@гетстафф.рф';
+    const email = (typeof SITE !== 'undefined' && SITE.email) || 'gstmetiz@yandex.ru';
     upsertJsonLd('ld-org', {
       '@context': 'https://schema.org',
       '@type': 'Organization',

@@ -2,7 +2,7 @@
 
 const SITE = {
   phone: '+7 (911) 910-33-44',
-  email: 'metiz@гетстафф.рф',
+  email: 'gstmetiz@yandex.ru',
   origin: 'https://gstmetiz.shop',
   wbSeller: 'https://www.wildberries.ru/seller/55354',
   ozon: 'https://www.ozon.ru',
@@ -18,7 +18,7 @@ const LEGAL = {
   inn: '781705990060',
   ogrnip: '308784710500154',
   trademark: 'GETSTUFF',
-  email: 'metiz@гетстафф.рф',
+  email: 'gstmetiz@yandex.ru',
   phone: '+7 (911) 910-33-44',
   site: 'https://gstmetiz.shop/',
   wbSeller: 'https://www.wildberries.ru/seller/55354',
