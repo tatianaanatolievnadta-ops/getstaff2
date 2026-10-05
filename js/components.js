@@ -43,7 +43,7 @@ function siteHref(path) {
 
 const CATEGORY_NAV_IMAGES = {
   'roof-screws': 'assets/brand/hero-roof.jpg',
-  'wood-screws': '211763002/1.webp',
+  'wood-screws': 'assets/brand/cat-wood.jpg',
   'metal-screws': '868628984/1.webp',
   'nails': '479499362/1.webp',
 };
