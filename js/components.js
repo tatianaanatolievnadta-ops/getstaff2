@@ -42,8 +42,8 @@ function siteHref(path) {
 }
 
 const CATEGORY_NAV_IMAGES = {
-  'roof-screws': 'assets/brand/cat-roof.jpg',
-  'wood-screws': 'assets/brand/cat-wood.jpg',
+  'roof-screws': 'assets/brand/hero-roof.jpg',
+  'wood-screws': '211763002/1.webp',
   'metal-screws': '868628984/1.webp',
   'nails': '479499362/1.webp',
 };
