@@ -63,43 +63,100 @@
     const price = typeof getSitePrice === 'function' ? getSitePrice(product) : product.price;
     const path = '/product.html?id=' + encodeURIComponent(product.id);
     const desc = (product.description || product.name).slice(0, 160);
+    const imgPath = typeof getLocalProductImagePath === 'function'
+      ? getLocalProductImagePath(product.wbId)
+      : 'assets/brand/logo-mark.png';
     setPageSeo({
       title: product.name + ' — купить | GETSTUFF',
       description: desc + (price ? ' Цена от ' + price + ' ₽. Скидка к WB, опт, доставка.' : ''),
       path,
-      image: typeof getLocalProductImagePath === 'function'
-        ? getLocalProductImagePath(product.wbId)
-        : 'assets/brand/logo-mark.png',
+      image: imgPath,
       type: 'product',
     });
-    upsertJsonLd('ld-product', {
+    const validUntil = new Date();
+    validUntil.setMonth(validUntil.getMonth() + 3);
+    const ld = {
       '@context': 'https://schema.org',
       '@type': 'Product',
       name: product.name,
-      sku: product.sku || product.id,
-      image: ORIGIN + '/' + (typeof getLocalProductImagePath === 'function'
-        ? getLocalProductImagePath(product.wbId)
-        : 'assets/brand/logo-mark.png'),
+      sku: String(product.sku || product.id),
+      mpn: String(product.sku || product.id),
+      image: [ORIGIN + '/' + String(imgPath).replace(/^\//, '')],
       description: product.description || product.name,
+      category: product.category || 'Крепёж',
       brand: { '@type': 'Brand', name: 'GETSTUFF' },
       offers: {
         '@type': 'Offer',
         url: ORIGIN + path,
         priceCurrency: 'RUB',
         price: String(price || product.price || 0),
+        priceValidUntil: validUntil.toISOString().slice(0, 10),
         availability: product.inStock !== false
           ? 'https://schema.org/InStock'
           : 'https://schema.org/OutOfStock',
-        seller: { '@type': 'Organization', name: 'GETSTUFF' },
+        itemCondition: 'https://schema.org/NewCondition',
+        seller: { '@type': 'Organization', name: 'GETSTUFF', url: ORIGIN + '/' },
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingDestination: {
+            '@type': 'DefinedRegion',
+            addressCountry: 'RU',
+          },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: {
+              '@type': 'QuantitativeValue',
+              minValue: 1,
+              maxValue: 7,
+              unitCode: 'DAY',
+            },
+          },
+        },
       },
-      aggregateRating: product.rating
-        ? {
-            '@type': 'AggregateRating',
-            ratingValue: String(product.rating),
-            reviewCount: String(product.reviews || 1),
-          }
-        : undefined,
-    });
+    };
+    if (product.rating) {
+      ld.aggregateRating = {
+        '@type': 'AggregateRating',
+        ratingValue: String(product.rating),
+        reviewCount: String(product.reviews || 1),
+        bestRating: '5',
+        worstRating: '1',
+      };
+    }
+    upsertJsonLd('ld-product', ld);
+  };
+
+  /** Related articles by product category for internal linking / SEO */
+  window.getRelatedArticlesForProduct = function getRelatedArticlesForProduct(product) {
+    const map = {
+      'roof-screws': [
+        { href: 'articles/samorezy-krovelnye-ral.html', title: 'Саморезы кровельные RAL и EPDM' },
+        { href: 'articles/samorezy-dlya-zabora-profnastil.html', title: 'Саморезы для забора из профнастила' },
+        { href: 'articles/rashod-samorezov-profnastil-m2.html', title: 'Расход саморезов на 1 м²' },
+        { href: 'ral/', title: 'Подбор по цвету RAL' },
+        { href: 'tools/rashod-samorezov.html', title: 'Калькулятор расхода' },
+      ],
+      'wood-screws': [
+        { href: 'articles/kak-vybrat-samorezy-po-derevu.html', title: 'Как выбрать саморезы по дереву' },
+        { href: 'articles/samorezy-35-i-42.html', title: 'Диаметры 3,5 и 4,2 мм' },
+        { href: 'articles/zheltyj-cink-ili-chernyj-fosfat.html', title: 'Жёлтый цинк или чёрный фосфат' },
+      ],
+      'metal-screws': [
+        { href: 'articles/samorezy-po-metallu-ili-derevu.html', title: 'По металлу или по дереву' },
+        { href: 'articles/samorezy-so-sverlom.html', title: 'Саморезы со сверлом' },
+        { href: 'articles/kak-otlichit-kachestvennyj-krepezh.html', title: 'Как отличить качественный крепёж' },
+      ],
+      nails: [
+        { href: 'articles/gvozdi-stroitelnye-razmery.html', title: 'Гвозди: размеры и применение' },
+        { href: 'articles/upakovka-krepezha-kg-ili-sht.html', title: 'Упаковка: кг или штуки' },
+        { href: 'articles/chek-list-zakupki-krepezha.html', title: 'Чек-лист закупки' },
+      ],
+    };
+    return map[product?.category] || [
+      { href: 'articles.html', title: 'Все статьи о крепеже' },
+      { href: 'articles/sajt-ili-wb-ceny-samorezy.html', title: 'Сайт или Wildberries' },
+      { href: 'wholesale.html', title: 'Условия опта' },
+    ];
   };
 
   window.injectOrgJsonLd = function injectOrgJsonLd() {

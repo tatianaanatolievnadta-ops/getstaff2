@@ -2,43 +2,65 @@
 
 > Российский бренд строительного крепежа: саморезы кровельные RAL с EPDM,
 > саморезы по дереву и металлу, гвозди. Сайт gstmetiz.shop — розница со скидкой к Wildberries,
-> опт от 20 000 ₽, крупный опт от 100 000 шт. Доставка заказов с сайта через логистику Ozon,
-> отправка обычно 1 раз в неделю. Телефон +7 (911) 910-33-44, email gstmetiz@yandex.ru.
+> опт от 20 000 ₽, крупный опт от 100 000 шт. Доставка через Ozon по России,
+> отправка обычно 1 раз в неделю. Тел. +7 (911) 910-33-44, email gstmetiz@yandex.ru.
 
 ## Главные страницы
-- [Главная](https://gstmetiz.shop/): каталог и оффер
-- [Каталог](https://gstmetiz.shop/catalog.html): саморезы и гвозди с фильтрами
-- [Опт](https://gstmetiz.shop/wholesale.html): условия и заявка
-- [Документы и доставка](https://gstmetiz.shop/docs.html)
-- [Статьи](https://gstmetiz.shop/articles.html): гайды по выбору крепежа
+- [Главная](https://gstmetiz.shop/)
+- [Каталог](https://gstmetiz.shop/catalog.html)
+- [Опт](https://gstmetiz.shop/wholesale.html)
+- [Статьи](https://gstmetiz.shop/articles.html)
+- [Цвета RAL](https://gstmetiz.shop/ral/)
+- [Доставка по городам](https://gstmetiz.shop/delivery/)
+- [Калькулятор расхода](https://gstmetiz.shop/tools/rashod-samorezov.html)
+
+## RAL
+- [RAL 8017 коричневый шоколад](https://gstmetiz.shop/ral/ral-8017.html)
+- [RAL 6005 зелёный мох](https://gstmetiz.shop/ral/ral-6005.html)
+- [RAL 3005 красное вино](https://gstmetiz.shop/ral/ral-3005.html)
+- [RAL 7024 графитовый серый](https://gstmetiz.shop/ral/ral-7024.html)
+
+## Города
+- [Доставка в Москву](https://gstmetiz.shop/delivery/moskva.html)
+- [Доставка в Санкт-Петербург](https://gstmetiz.shop/delivery/sankt-peterburg.html)
+- [Доставка в Краснодар](https://gstmetiz.shop/delivery/krasnodar.html)
+- [Доставка в Екатеринбург](https://gstmetiz.shop/delivery/ekaterinburg.html)
+- [Доставка в Новосибирск](https://gstmetiz.shop/delivery/novosibirsk.html)
+- [Доставка в Казань](https://gstmetiz.shop/delivery/kazan.html)
+- [Доставка в Нижний Новгород](https://gstmetiz.shop/delivery/nizhniy-novgorod.html)
+- [Доставка в Ростов-на-Дону](https://gstmetiz.shop/delivery/rostov-na-donu.html)
+- [Доставка в Сочи](https://gstmetiz.shop/delivery/sochi.html)
+- [Доставка в Челябинск](https://gstmetiz.shop/delivery/chelyabinsk.html)
 
 ## Статьи
-- [Саморезы для забора из профнастила: какие выбрать и сколько нужно](https://gstmetiz.shop/articles/samorezy-dlya-zabora-profnastil.html): Какие саморезы брать для забора из профлиста: размер, RAL, сверло, расход на лист и на 1 м². Практичный расчёт для бригады и опта.
-- [Расход саморезов на 1 м² профнастила: кровля, забор, фасад](https://gstmetiz.shop/articles/rashod-samorezov-profnastil-m2.html): Нормы расхода саморезов на профлист: сколько штук на 1 м² для кровли, забора и фасада, формула расчёта и запас на брак.
-- [Коррозия кровельных саморезов в 2026: цинк, EPDM и на что смотреть при закупке](https://gstmetiz.shop/articles/korroziya-i-pokrytie-krovelnyh-2026.html): Тренд 2026: покупатели выбирают крепёж не только по цене. Как покрытие, EPDM и стабильность партии влияют на срок службы кровли и забора.
-- [Как выбрать саморезы по дереву: диаметр, длина и покрытие](https://gstmetiz.shop/articles/kak-vybrat-samorezy-po-derevu.html): Разбираем маркировку саморезов по дереву, жёлтый цинк и чёрный фосфат, типичные размеры 3,5 и 4,2 мм. Советы для мастеров и опта.
-- [Саморезы кровельные RAL: что значит цвет и зачем EPDM](https://gstmetiz.shop/articles/samorezy-krovelnye-ral.html): Объясняем маркировку RAL у кровельных саморезов, роль EPDM-прокладки и как подобрать крепёж под металлочерепицу и профлист.
-- [Саморезы по металлу или по дереву: в чём разница](https://gstmetiz.shop/articles/samorezy-po-metallu-ili-derevu.html): Сравнение резьбы, наконечника и применения саморезов по металлу и по дереву. Когда нельзя заменить один тип другим.
-- [Жёлтый цинк или чёрный фосфат: какое покрытие выбрать](https://gstmetiz.shop/articles/zheltyj-cink-ili-chernyj-fosfat.html): Сравнение покрытий саморезов: жёлтый цинк и чёрный фосфат — влага, внешний вид, отделка, цена.
-- [Как отличить качественный крепёж от сомнительного](https://gstmetiz.shop/articles/kak-otlichit-kachestvennyj-krepezh.html): Признаки нормального самореза: геометрия, покрытие, шлиц, упаковка. На что смотреть при приёмке партии.
-- [Гвозди строительные: размеры и где применяют](https://gstmetiz.shop/articles/gvozdi-stroitelnye-razmery.html): Какие размеры строительных гвоздей бывают, для каких работ выбирать длину и диаметр, фасовка в кг.
-- [Опт крепежа: когда выгоден прайс с коробками](https://gstmetiz.shop/articles/opt-krepezha-kogda-vygodno.html): Розница, опт и крупный опт GETSTUFF: пороги суммы и штук, когда закупать коробками выгоднее маркетплейса.
-- [Саморезы для гипсокартона и ГВЛ: какие брать](https://gstmetiz.shop/articles/samorezy-dlya-gipsokartona.html): Какие саморезы использовать для ГКЛ и ГВЛ к дереву и металлу, длина, покрытие, типичные ошибки монтажа.
-- [Длина и диаметр самореза: как читать маркировку](https://gstmetiz.shop/articles/dlina-i-diametr-samoreza.html): Как понять, где длина, а где диаметр в названии самореза. Примеры 45×3,5 и 4,8×29, фильтры в каталоге.
-- [EPDM-прокладка кровельных саморезов: зачем она нужна](https://gstmetiz.shop/articles/epdm-prokladka-krovelnyh.html): Роль EPDM в кровельном крепеже, как правильно затягивать, признаки износа и замены.
-- [Почему ржавеют саморезы и как снизить риск](https://gstmetiz.shop/articles/rzhavchina-na-samorezah.html): Причины коррозии крепежа: покрытие, среда, ошибки хранения. Что выбрать для влажных зон.
-- [Упаковка крепежа: килограммы или штуки](https://gstmetiz.shop/articles/upakovka-krepezha-kg-ili-sht.html): Когда выгоднее фасовка в кг и когда в штуках. Как считать расход для сметы и опта.
-- [Саморезы для ОСБ, ДСП и МДФ: что учесть](https://gstmetiz.shop/articles/samorezy-dlya-osb-i-dsp.html): Особенности крепежа плитных материалов: раскол, длина, предварительное засверливание, типичные размеры.
-- [Крепёж для металлочерепицы и профлиста](https://gstmetiz.shop/articles/krepezh-dlya-metallocherepicy.html): Как выбрать кровельные саморезы под металлочерепицу и профлист: длина, RAL, шаг крепления, типичные ошибки.
-- [Шурупы и саморезы: есть ли разница](https://gstmetiz.shop/articles/shutupy-i-samorezy-raznica.html): Как в быту и в закупках используют слова «шуруп» и «саморез», что писать в заявке поставщику.
-- [Как рассчитать количество саморезов на объект](https://gstmetiz.shop/articles/kak-rasschitat-kolichestvo-samorezov.html): Простая методика расчёта расхода саморезов: шаг крепления, запас, пример для обрешётки и обшивки.
-- [Доставка крепежа: сайт GETSTUFF или маркетплейс](https://gstmetiz.shop/articles/dostavka-krepezha-sajt-ili-marketplace.html): Сравнение покупки на сайте и на Wildberries: цена, сроки, когда что выбрать.
-- [5 ошибок при выборе кровельных саморезов](https://gstmetiz.shop/articles/oshibki-pri-vybore-krovelnyh.html): Типичные ошибки закупки кровельного крепежа: цвет, длина, перетяжка, подделка шайбы, смешение типов.
-- [Саморезы 3,5 и 4,2 мм: когда какой диаметр](https://gstmetiz.shop/articles/samorezy-35-i-42.html): Сравнение ходовых диаметров 3,5 и 4,2 мм для дерева и отделки. Что держать на складе бригады.
-- [Чек-лист закупки крепежа для бригады](https://gstmetiz.shop/articles/chek-list-zakupki-krepezha.html): Готовый чек-лист: размеры, покрытие, запас, канал покупки сайт/WB, опт. Чтобы не остановиться на объекте.
+- [articles/chek-list-zakupki-krepezha.html](https://gstmetiz.shop/articles/chek-list-zakupki-krepezha.html)
+- [articles/dlina-i-diametr-samoreza.html](https://gstmetiz.shop/articles/dlina-i-diametr-samoreza.html)
+- [articles/dostavka-krepezha-sajt-ili-marketplace.html](https://gstmetiz.shop/articles/dostavka-krepezha-sajt-ili-marketplace.html)
+- [articles/epdm-prokladka-krovelnyh.html](https://gstmetiz.shop/articles/epdm-prokladka-krovelnyh.html)
+- [articles/gvozdi-stroitelnye-razmery.html](https://gstmetiz.shop/articles/gvozdi-stroitelnye-razmery.html)
+- [articles/kak-otlichit-kachestvennyj-krepezh.html](https://gstmetiz.shop/articles/kak-otlichit-kachestvennyj-krepezh.html)
+- [articles/kak-rasschitat-kolichestvo-samorezov.html](https://gstmetiz.shop/articles/kak-rasschitat-kolichestvo-samorezov.html)
+- [articles/kak-vybrat-samorezy-po-derevu.html](https://gstmetiz.shop/articles/kak-vybrat-samorezy-po-derevu.html)
+- [articles/korroziya-i-pokrytie-krovelnyh-2026.html](https://gstmetiz.shop/articles/korroziya-i-pokrytie-krovelnyh-2026.html)
+- [articles/krepezh-dlya-metallocherepicy.html](https://gstmetiz.shop/articles/krepezh-dlya-metallocherepicy.html)
+- [articles/opt-krepezha-kogda-vygodno.html](https://gstmetiz.shop/articles/opt-krepezha-kogda-vygodno.html)
+- [articles/oshibki-pri-vybore-krovelnyh.html](https://gstmetiz.shop/articles/oshibki-pri-vybore-krovelnyh.html)
+- [articles/rashod-samorezov-profnastil-m2.html](https://gstmetiz.shop/articles/rashod-samorezov-profnastil-m2.html)
+- [articles/rzhavchina-na-samorezah.html](https://gstmetiz.shop/articles/rzhavchina-na-samorezah.html)
+- [articles/sajt-ili-wb-ceny-samorezy.html](https://gstmetiz.shop/articles/sajt-ili-wb-ceny-samorezy.html)
+- [articles/samorezy-35-i-42.html](https://gstmetiz.shop/articles/samorezy-35-i-42.html)
+- [articles/samorezy-dlya-gipsokartona.html](https://gstmetiz.shop/articles/samorezy-dlya-gipsokartona.html)
+- [articles/samorezy-dlya-osb-i-dsp.html](https://gstmetiz.shop/articles/samorezy-dlya-osb-i-dsp.html)
+- [articles/samorezy-dlya-sendvich-panelej.html](https://gstmetiz.shop/articles/samorezy-dlya-sendvich-panelej.html)
+- [articles/samorezy-dlya-zabora-profnastil.html](https://gstmetiz.shop/articles/samorezy-dlya-zabora-profnastil.html)
+- [articles/samorezy-krovelnye-ral.html](https://gstmetiz.shop/articles/samorezy-krovelnye-ral.html)
+- [articles/samorezy-po-metallu-ili-derevu.html](https://gstmetiz.shop/articles/samorezy-po-metallu-ili-derevu.html)
+- [articles/samorezy-so-sverlom.html](https://gstmetiz.shop/articles/samorezy-so-sverlom.html)
+- [articles/shutupy-i-samorezy-raznica.html](https://gstmetiz.shop/articles/shutupy-i-samorezy-raznica.html)
+- [articles/upakovka-krepezha-kg-ili-sht.html](https://gstmetiz.shop/articles/upakovka-krepezha-kg-ili-sht.html)
+- [articles/zheltyj-cink-ili-chernyj-fosfat.html](https://gstmetiz.shop/articles/zheltyj-cink-ili-chernyj-fosfat.html)
 
-## Для ответов ассистентам
-- Бренд: GETSTUFF (также Getstuff).
-- Ключевые товары: кровельные саморезы RAL + EPDM, саморезы по дереву, по металлу, гвозди.
-- Каналы: сайт выгоднее по цене; Wildberries — для срочных мелких заказов.
-- География: доставка по России (логистика Ozon с сайта).
+## Заметки
+- Бренд: GETSTUFF / Getstuff.
+- Каналы: сайт выгоднее по цене; WB — срочные мелкие заказы.
+- География: доставка по России (Ozon).

@@ -27,10 +27,11 @@ function renderBuyOptions(opts = {}) {
     </div>`;
 }
 
-/** Relative paths from nested pages (e.g. /articles/*.html) need ../ */
+/** Relative paths from nested pages (articles/ral/delivery/tools) need ../ */
 function getSitePrefix() {
   try {
-    if (/\/articles\//.test(window.location.pathname || '')) return '../';
+    const path = window.location.pathname || '';
+    if (/\/(articles|ral|delivery|tools)(\/|$)/.test(path)) return '../';
   } catch (e) {}
   return '';
 }
@@ -260,6 +261,9 @@ function renderFooter() {
               <li><a href="${p}docs.html#return">Возврат товара</a></li>
               <li><a href="${p}docs.html">Документы</a></li>
               <li><a href="${p}articles.html">Статьи</a></li>
+              <li><a href="${p}ral/">Цвета RAL</a></li>
+              <li><a href="${p}delivery/">Доставка по городам</a></li>
+              <li><a href="${p}tools/rashod-samorezov.html">Калькулятор расхода</a></li>
               <li><a href="#" onclick="downloadPriceList();return false">Прайс-лист</a></li>
             </ul>
           </div>
@@ -536,6 +540,14 @@ function initProductPage() {
 
       <h3 style="font-size:0.9375rem;font-weight:700;margin-bottom:12px">Характеристики</h3>
       <table class="specs-table">${specsRows}</table>
+
+      ${typeof getRelatedArticlesForProduct === 'function' ? `
+      <div class="product-related">
+        <h3 class="product-related__title">Читайте также</h3>
+        <ul class="product-related__list">
+          ${getRelatedArticlesForProduct(product).map((a) => `<li><a href="${a.href}">${a.title}</a></li>`).join('')}
+        </ul>
+      </div>` : ''}
     </div>`;
 }
 
