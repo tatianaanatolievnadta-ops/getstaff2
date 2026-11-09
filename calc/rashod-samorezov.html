@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор расхода саморезов на профнастил — GETSTUFF</title>
+  <meta name="description" content="Онлайн-расчёт саморезов на кровлю, забор и фасад из профнастила. Нормы на м², запас, переход в каталог GETSTUFF.">
+  <meta name="keywords" content="калькулятор саморезов, расход саморезов на профнастил, сколько саморезов на м2">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://gstmetiz.shop/calc/rashod-samorezov.html">
+  <meta property="og:title" content="Калькулятор расхода саморезов на профнастил — GETSTUFF">
+  <meta property="og:description" content="Онлайн-расчёт саморезов на кровлю, забор и фасад из профнастила. Нормы на м², запас, переход в каталог GETSTUFF.">
+  <meta property="og:url" content="https://gstmetiz.shop/calc/rashod-samorezov.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://gstmetiz.shop/assets/brand/hero-roof.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="GETSTUFF">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="../assets/brand/logo-mark.png">
+  <link rel="apple-touch-icon" href="../assets/brand/logo-mark.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=20261109seo2">
+  <script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Насколько точен калькулятор?", "acceptedAnswer": {"@type": "Answer", "text": "Это смета-ориентир. На сложных кровлях и в ветреных регионах расход выше — закладывайте верхнюю границу нормы."}}, {"@type": "Question", "name": "Как заказать посчитанное количество?", "acceptedAnswer": {"@type": "Answer", "text": "Округлите до фасовки коробки и оставьте заявку на сайте или выберите позиции в каталоге."}}]}
+</script>
+</head>
+<body>
+  <div class="page-header">
+    <h1 class="page-header__title">Калькулятор расхода саморезов</h1>
+    <div class="page-header__breadcrumb">
+      <a href="../index.html">Главная</a> / <span>Калькулятор</span>
+    </div>
+  </div>
+  
+  <div class="container seo-landing">
+    <p class="seo-lead">Посчитайте ориентировочный расход саморезов на профнастил: кровля, забор или фасад. Добавьте запас и перейдите в каталог GETSTUFF.</p>
+    <form class="calc-box" id="screw-calc" onsubmit="return false">
+      <label>Тип работ
+        <select id="calc-type">
+          <option value="roof">Кровля (8–10 шт/м²)</option>
+          <option value="fence">Забор (5–8 шт/м²)</option>
+          <option value="facade">Фасад (7–9 шт/м²)</option>
+        </select>
+      </label>
+      <label>Площадь, м²
+        <input type="number" id="calc-area" min="1" step="0.1" value="50">
+      </label>
+      <label>Запас, %
+        <input type="number" id="calc-reserve" min="0" max="30" value="10">
+      </label>
+      <label class="calc-optional">Или: листов × лаг × шт на лагу
+        <div class="calc-row">
+          <input type="number" id="calc-sheets" min="0" placeholder="листов">
+          <input type="number" id="calc-lags" min="0" placeholder="лаг">
+          <input type="number" id="calc-per-lag" min="0" placeholder="шт/лагу" value="3">
+        </div>
+      </label>
+      <button type="button" class="btn btn--primary" id="calc-run">Рассчитать</button>
+    </form>
+    <div class="calc-result" id="calc-result" hidden></div>
+    <div class="seo-actions">
+      <a class="btn btn--primary" href="../catalog.html?cat=roof-screws">Кровельные саморезы</a>
+      <a class="btn btn--outline" href="../ral/">По цвету RAL</a>
+      <a class="btn btn--outline" href="../checkout.html">Заявка менеджеру</a>
+    </div>
+    <p><a href="../articles/rashod-samorezov-profnastil-m2.html">Подробная статья про расход на 1 м² →</a></p>
+  </div>
+  <script>
+  (function(){
+    const rates = { roof: 9, fence: 6.5, facade: 8 };
+    function run(){
+      const type = document.getElementById('calc-type').value;
+      const area = parseFloat(document.getElementById('calc-area').value) || 0;
+      const reserve = (parseFloat(document.getElementById('calc-reserve').value) || 0) / 100;
+      const sheets = parseFloat(document.getElementById('calc-sheets').value) || 0;
+      const lags = parseFloat(document.getElementById('calc-lags').value) || 0;
+      const perLag = parseFloat(document.getElementById('calc-per-lag').value) || 0;
+      let base = 0, method = '';
+      if (sheets > 0 && lags > 0 && perLag > 0) {
+        base = sheets * lags * perLag;
+        method = 'по листам и лагам';
+      } else {
+        base = area * rates[type];
+        method = 'по площади';
+      }
+      const total = Math.ceil(base * (1 + reserve));
+      const boxes500 = Math.ceil(total / 500);
+      const el = document.getElementById('calc-result');
+      el.hidden = false;
+      el.innerHTML = '<strong>Нужно примерно ' + total.toLocaleString('ru-RU') + ' шт.</strong>' +
+        '<div>База: ' + Math.ceil(base).toLocaleString('ru-RU') + ' (' + method + '), запас учтён.</div>' +
+        '<div>Ориентир упаковок по 500 шт: ' + boxes500 + '</div>';
+    }
+    document.getElementById('calc-run').addEventListener('click', run);
+  })();
+  </script>
+
+  <script src="../js/products.data.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/wholesale.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/components.js"></script>
+  <script>renderLayout();</script>
+</body>
+</html>

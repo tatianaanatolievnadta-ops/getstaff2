@@ -104,7 +104,7 @@ ARTICLES = [
 </ul>
 <h2>Практика закупки</h2>
 <p>До большой партии возьмите тестовую коробку и прогоните на обрезке панели. Для объекта считайте расход с запасом и оформляйте опт на сайте GETSTUFF — так проще попасть в нужные размеры и цвет.</p>
-<p><a href="../catalog.html?cat=roof-screws">Кровельный / фасадный крепёж →</a> · <a href="../wholesale.html">Опт →</a> · <a href="../tools/rashod-samorezov.html">Калькулятор →</a></p>
+<p><a href="../catalog.html?cat=roof-screws">Кровельный / фасадный крепёж →</a> · <a href="../wholesale.html">Опт →</a> · <a href="../calc/rashod-samorezov.html">Калькулятор →</a></p>
 """
   },
   {
@@ -137,7 +137,7 @@ ARTICLES = [
 </ul>
 <h2>Короткое правило</h2>
 <p><strong>Срочно и немного — WB. Партия, повторный расход, опт — сайт.</strong> Перед сметой сверьте ходовые RAL и размеры в каталоге, посчитайте расход калькулятором и оставьте заявку менеджеру.</p>
-<p><a href="../catalog.html">Каталог сайта →</a> · <a href="../tools/rashod-samorezov.html">Калькулятор →</a> · <a href="../delivery/">Доставка по городам →</a></p>
+<p><a href="../catalog.html">Каталог сайта →</a> · <a href="../calc/rashod-samorezov.html">Калькулятор →</a> · <a href="../delivery/">Доставка по городам →</a></p>
 """
   },
   {

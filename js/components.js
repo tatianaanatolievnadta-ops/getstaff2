@@ -31,7 +31,7 @@ function renderBuyOptions(opts = {}) {
 function getSitePrefix() {
   try {
     const path = window.location.pathname || '';
-    if (/\/(articles|ral|delivery|tools)(\/|$)/.test(path)) return '../';
+    if (/\/(articles|ral|delivery|calc)(\/|$)/.test(path)) return '../';
   } catch (e) {}
   return '';
 }
@@ -263,7 +263,7 @@ function renderFooter() {
               <li><a href="${p}articles.html">Статьи</a></li>
               <li><a href="${p}ral/">Цвета RAL</a></li>
               <li><a href="${p}delivery/">Доставка по городам</a></li>
-              <li><a href="${p}tools/rashod-samorezov.html">Калькулятор расхода</a></li>
+              <li><a href="${p}calc/rashod-samorezov.html">Калькулятор расхода</a></li>
               <li><a href="#" onclick="downloadPriceList();return false">Прайс-лист</a></li>
             </ul>
           </div>

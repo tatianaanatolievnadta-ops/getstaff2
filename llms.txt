@@ -12,7 +12,7 @@
 - [Статьи](https://gstmetiz.shop/articles.html)
 - [Цвета RAL](https://gstmetiz.shop/ral/)
 - [Доставка по городам](https://gstmetiz.shop/delivery/)
-- [Калькулятор расхода](https://gstmetiz.shop/tools/rashod-samorezov.html)
+- [Калькулятор расхода](https://gstmetiz.shop/calc/rashod-samorezov.html)
 
 ## RAL
 - [RAL 8017 коричневый шоколад](https://gstmetiz.shop/ral/ral-8017.html)

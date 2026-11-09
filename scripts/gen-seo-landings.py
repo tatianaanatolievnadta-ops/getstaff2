@@ -261,7 +261,7 @@ def write_ral_pages(products: list[dict]) -> list[str]:
     <div class="seo-actions">
       <a class="btn btn--primary" href="../catalog.html?cat=roof-screws&q=RAL{ral['code']}">В каталог RAL {ral['code']}</a>
       <a class="btn btn--outline" href="../checkout.html">Оставить заявку</a>
-      <a class="btn btn--outline" href="../tools/rashod-samorezov.html">Калькулятор расхода</a>
+      <a class="btn btn--outline" href="../calc/rashod-samorezov.html">Калькулятор расхода</a>
     </div>
     <h2>Позиции {ral['name']} в наличии</h2>
     <div class="seo-product-grid">{''.join(product_cards) or '<p>Смотрите все кровельные в каталоге.</p>'}
@@ -370,7 +370,7 @@ def write_city_pages() -> list[str]:
     <div class="article-faq">
       {''.join(f"<details><summary>{i['q']}</summary><p>{i['a']}</p></details>" for i in faq)}
     </div>
-    <p><a href="../tools/rashod-samorezov.html">Калькулятор расхода саморезов →</a> · <a href="../ral/">Цвета RAL →</a></p>
+    <p><a href="../calc/rashod-samorezov.html">Калькулятор расхода саморезов →</a> · <a href="../ral/">Цвета RAL →</a></p>
   </div>"""
 
         html = shell(
@@ -427,7 +427,7 @@ def write_city_pages() -> list[str]:
 
 
 def write_calculator() -> str:
-    out_dir = ROOT / "tools"
+    out_dir = ROOT / "calc"
     out_dir.mkdir(exist_ok=True)
     content = """
   <div class="container seo-landing">
@@ -501,7 +501,7 @@ def write_calculator() -> str:
         title="Калькулятор расхода саморезов на профнастил — GETSTUFF",
         description="Онлайн-расчёт саморезов на кровлю, забор и фасад из профнастила. Нормы на м², запас, переход в каталог GETSTUFF.",
         keywords="калькулятор саморезов, расход саморезов на профнастил, сколько саморезов на м2",
-        canonical=f"{SITE}/tools/rashod-samorezov.html",
+        canonical=f"{SITE}/calc/rashod-samorezov.html",
         og_image=f"{SITE}/assets/brand/hero-roof.jpg",
         prefix="../",
         css=CSS,
@@ -512,7 +512,7 @@ def write_calculator() -> str:
     )
     # inject FAQ visually before actions end — already in article style below result via link
     (out_dir / "rashod-samorezov.html").write_text(html, encoding="utf-8")
-    return "tools/rashod-samorezov.html"
+    return "calc/rashod-samorezov.html"
 
 
 def collect_article_urls() -> list[str]:
@@ -529,7 +529,7 @@ def write_sitemap(extra: list[str]) -> None:
         ("docs.html", "0.7", "monthly"),
         ("ral/", "0.85", "weekly"),
         ("delivery/", "0.85", "weekly"),
-        ("tools/rashod-samorezov.html", "0.85", "weekly"),
+        ("calc/rashod-samorezov.html", "0.85", "weekly"),
     ]
     sm = [
         '<?xml version="1.0" encoding="UTF-8"?>',
@@ -575,7 +575,7 @@ def write_llms(extra_notes: list[str]) -> None:
         f"- [Статьи]({SITE}/articles.html)",
         f"- [Цвета RAL]({SITE}/ral/)",
         f"- [Доставка по городам]({SITE}/delivery/)",
-        f"- [Калькулятор расхода]({SITE}/tools/rashod-samorezov.html)",
+        f"- [Калькулятор расхода]({SITE}/calc/rashod-samorezov.html)",
         "",
         "## RAL",
     ]
@@ -599,7 +599,7 @@ def main() -> None:
     urls.append(write_calculator())
     urls += collect_article_urls()
     # dedupe while preserving order for non-hub paths already in sitemap static
-    extra = [u for u in urls if u not in {"ral/", "delivery/", "tools/rashod-samorezov.html"}]
+    extra = [u for u in urls if u not in {"ral/", "delivery/", "calc/rashod-samorezov.html"}]
     write_sitemap(extra)
     write_llms(
         [

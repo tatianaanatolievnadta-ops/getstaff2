@@ -134,7 +134,7 @@
         { href: 'articles/samorezy-dlya-zabora-profnastil.html', title: 'Саморезы для забора из профнастила' },
         { href: 'articles/rashod-samorezov-profnastil-m2.html', title: 'Расход саморезов на 1 м²' },
         { href: 'ral/', title: 'Подбор по цвету RAL' },
-        { href: 'tools/rashod-samorezov.html', title: 'Калькулятор расхода' },
+        { href: 'calc/rashod-samorezov.html', title: 'Калькулятор расхода' },
       ],
       'wood-screws': [
         { href: 'articles/kak-vybrat-samorezy-po-derevu.html', title: 'Как выбрать саморезы по дереву' },
