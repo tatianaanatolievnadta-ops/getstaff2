@@ -3,13 +3,17 @@
 from pathlib import Path
 import json
 
-ROOT = Path(r"d:\Getstafff\getstaff2")
+ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = ROOT / "articles"
 SITE = "https://gstmetiz.shop"
-CSS = "../css/style.css?v=20261003seo"
-CSS_ROOT = "css/style.css?v=20261003seo"
+CSS = "../css/style.css?v=20261109seo"
+CSS_ROOT = "css/style.css?v=20261109seo"
+TODAY = "2026-11-09"
 
 ARTICLE_IMAGES = {
+  "samorezy-dlya-zabora-profnastil": "848081947/2.webp",
+  "rashod-samorezov-profnastil-m2": "848081946/1.webp",
+  "korroziya-i-pokrytie-krovelnyh-2026": "848081945/1.webp",
   "kak-vybrat-samorezy-po-derevu": "211763002/1.webp",
   "samorezy-krovelnye-ral": "848081947/1.webp",
   "samorezy-po-metallu-ili-derevu": "868628984/1.webp",
@@ -33,6 +37,117 @@ ARTICLE_IMAGES = {
 }
 
 ARTICLES = [
+  {
+    "slug": "samorezy-dlya-zabora-profnastil",
+    "title": "Саморезы для забора из профнастила: какие выбрать и сколько нужно",
+    "description": "Какие саморезы брать для забора из профлиста: размер, RAL, сверло, расход на лист и на 1 м². Практичный расчёт для бригады и опта.",
+    "date": TODAY,
+    "category": "Кровельные саморезы",
+    "catLink": "catalog.html?cat=roof-screws",
+    "keywords": "саморезы для забора из профнастила, саморезы для профлиста забор, расход саморезов на забор",
+    "faq": [
+      {"q": "Какой размер самореза для забора из профнастила?", "a": "Чаще берут 4,8×19 / 4,8×25 / 5,5×19 с шестигранной головкой под цвет листа. Длина зависит от толщины листа и лаги."},
+      {"q": "Сколько саморезов нужно на лист забора?", "a": "При 3 лагах обычно 9 шт. на лист (по 3 на лагу). В ветреном регионе — 12–15 шт."},
+      {"q": "Нужна ли EPDM-прокладка на заборе?", "a": "Для кровли — обязательно. Для забора часто используют цветные саморезы с пресс-шайбой; EPDM полезен, если важна защита отверстия от влаги и ржавых подтёков."},
+    ],
+    "body": """
+<p>Забор из профнастила — один из самых частых запросов к крепежу рядом с кровлей. Ошибка в типе самореза или в расходе даёт «парус», сорванные листы и ржавые подтёки по столбам.</p>
+<h2>Какой саморез брать для забора</h2>
+<ul>
+<li><strong>Диаметр</strong> — обычно 4,8 или 5,5 мм;</li>
+<li><strong>Головка</strong> — шестигранник 8 мм, цвет по RAL под лист (8017, 6005, 7024 и др.);</li>
+<li><strong>Наконечник</strong> — со сверлом, если лаги металлические; острый «по дереву» — если лаги деревянные;</li>
+<li><strong>Шайба</strong> — пресс-шайба; для долговечности узла лучше с качественным уплотнителем.</li>
+</ul>
+<p>Не ставьте на забор обычные чёрные саморезы по дереву без шайбы: шлиц рвётся, лист гуляет, внешний вид портится за сезон.</p>
+<h2>Сколько саморезов нужно</h2>
+<p>Считайте от числа лаг, а не «на глаз»:</p>
+<ul>
+<li><strong>2 лаги</strong> — около 6 шт. на лист;</li>
+<li><strong>3 лаги</strong> (стандарт 1,5–2,5 м высоты) — около 9 шт. на лист;</li>
+<li><strong>ветреный регион</strong> — 12–15 шт., особенно по нижней лаге через волну.</li>
+</ul>
+<p>Ориентир по площади: <strong>5–8 шт. на 1 м²</strong>, плюс запас 10% на брак и подрезку.</p>
+<h2>Пример для сметы</h2>
+<p>Забор 30 м, высота 2 м, лист ~1,1 м полезной ширины → примерно 28 листов. При 3 лагах и 9 шт. на лист: 28 × 9 = 252 шт. + 10% ≈ <strong>280 шт.</strong> Дальше берите кратно коробке.</p>
+<h2>Что заказать в GETSTUFF</h2>
+<p>В каталоге смотрите кровельные / цветные саморезы нужного RAL и размера. На сайте цена ниже WB; для партии от 20 000 ₽ — оптовый прайс. Отправка заказов с сайта — по согласованному графику (обычно 1 раз в неделю).</p>
+<p><a href="../catalog.html?cat=roof-screws">Саморезы под цвет профлиста →</a> · <a href="../wholesale.html">Опт →</a></p>
+"""
+  },
+  {
+    "slug": "rashod-samorezov-profnastil-m2",
+    "title": "Расход саморезов на 1 м² профнастила: кровля, забор, фасад",
+    "description": "Нормы расхода саморезов на профлист: сколько штук на 1 м² для кровли, забора и фасада, формула расчёта и запас на брак.",
+    "date": TODAY,
+    "category": "Кровельные саморезы",
+    "catLink": "catalog.html?cat=roof-screws",
+    "keywords": "расход саморезов на 1 м2 профнастила, сколько саморезов на профлист, саморезы на м2 кровли",
+    "faq": [
+      {"q": "Сколько саморезов на 1 м² кровли из профнастила?", "a": "Обычно 8–10 шт./м². В регионах с сильным ветром и на сложных узлах берут до 10–12 шт./м²."},
+      {"q": "Сколько саморезов на 1 м² забора?", "a": "Ориентир 5–8 шт./м². При трёх лагах чаще выходит 5–6 шт./м²."},
+      {"q": "Какой запас закладывать?", "a": "Добавляйте 5–10% к расчёту на брак, потери и доборные крепления."},
+    ],
+    "body": """
+<p>Запрос «сколько саморезов на квадрат профлиста» почти всегда всплывает перед сметой. Ниже — рабочие нормы, которыми пользуются монтажники, и простая формула под ваш объект.</p>
+<h2>Нормы расхода на 1 м²</h2>
+<ul>
+<li><strong>Кровля</strong> — 8–10 шт./м²;</li>
+<li><strong>Фасад / стена</strong> — 7–9 шт./м²;</li>
+<li><strong>Забор</strong> — 5–8 шт./м² (в ветре — ближе к верхней границе).</li>
+</ul>
+<p>Это старт для сметы. Точная цифра зависит от шага обрешётки/лаг, профиля листа (С-8, С-21, НС-35…) и ветровой нагрузки.</p>
+<h2>Как посчитать быстро</h2>
+<ol>
+<li>Выберите норму под задачу (кровля / забор / фасад).</li>
+<li>Умножьте на площадь в м².</li>
+<li>Добавьте <strong>5–10%</strong> запаса.</li>
+<li>Округлите вверх до фасовки коробки.</li>
+</ol>
+<p><strong>Пример:</strong> кровля 80 м² × 9 шт. = 720 шт. + 8% ≈ 780 шт.</p>
+<h2>Считаем по листам (удобно для забора)</h2>
+<p>Формула: <em>число листов × число лаг × саморезов на лагу</em>. Минимум часто 3 шт. на лагу; в ветре — 4–5, особенно снизу.</p>
+<h2>Какой крепёж не экономить</h2>
+<p>Для кровли — только саморезы с EPDM и нужным RAL. Для забора — цветные с нормальной шайбой и сверлом под тип лаг. Дешёвый крепёж без покрытия и с «дубовой» резиной выходит дороже на рекламациях.</p>
+<p>В GETSTUFF можно сразу набрать нужный размер и цвет, а крупную партию оформить оптом со скидкой к цене маркетплейса.</p>
+<p><a href="../catalog.html?cat=roof-screws">Кровельные саморезы →</a> · <a href="../articles/samorezy-dlya-zabora-profnastil.html">Гайд по забору →</a></p>
+"""
+  },
+  {
+    "slug": "korroziya-i-pokrytie-krovelnyh-2026",
+    "title": "Коррозия кровельных саморезов в 2026: цинк, EPDM и на что смотреть при закупке",
+    "description": "Тренд 2026: покупатели выбирают крепёж не только по цене. Как покрытие, EPDM и стабильность партии влияют на срок службы кровли и забора.",
+    "date": TODAY,
+    "category": "Кровельные саморезы",
+    "catLink": "catalog.html?cat=roof-screws",
+    "keywords": "коррозия кровельных саморезов, покрытие саморезов цинк, качественный кровельный крепёж 2026",
+    "faq": [
+      {"q": "Почему ржавеют кровельные саморезы?", "a": "Чаще всего из‑за тонкого покрытия, повреждённой шайбы, перетяжки EPDM и агрессивной среды (море, реагенты, постоянная влага)."},
+      {"q": "Что важнее цены в закупке 2026 года?", "a": "Скорость поставки, стабильность партии, нормальная EPDM-прокладка и предсказуемое покрытие. Дешёвый крепёж с рекламациями дороже на объекте."},
+      {"q": "Как проверить партию перед монтажом?", "a": "Осмотрите шайбу и EPDM, шлиц, сверло; закрутите 10–20 шт. на обрезке листа. Прокладка не должна твердеть и рваться, сверло — ломаться."},
+    ],
+    "body": """
+<p>На рынке крепежа в 2026 году спрос смещается: важны не только «рубли за штуку», но и скорость поставки, гибкость ассортимента и <strong>совокупная стоимость монтажа</strong>. Для кровли это особенно заметно: один сезон ржавых шляпок убивает вид ската и доверие к подрядчику.</p>
+<h2>Что реально защищает саморез</h2>
+<ul>
+<li><strong>Покрытие стержня и головки</strong> — цинк / полимерный слой под RAL;</li>
+<li><strong>EPDM-прокладка</strong> — держит герметичность и не трескается на морозе и жаре;</li>
+<li><strong>Правильная затяжка</strong> — без пережима «бубликом» и без недотяга;</li>
+<li><strong>Совместимость с основанием</strong> — сверло под металл или резьба под дерево.</li>
+</ul>
+<h2>Признаки слабой партии</h2>
+<ul>
+<li>прокладка жёсткая, пахнет «дешёвой резиной», легко рвётся;</li>
+<li>покрытие с проплешинами до металла;</li>
+<li>сверло гнётся или ломается на первых оборотах;</li>
+<li>шлиц плывёт от обычной биты.</li>
+</ul>
+<h2>Как закупать в 2026 году</h2>
+<p>Берите ходовые размеры и RAL с запасом на объект, фиксируйте поставщика с предсказуемыми коробками. Для срочных мелких доборов удобен маркетплейс; для партии и повторяющегося расхода — сайт GETSTUFF с ценой ниже WB и оптом от 20 000 ₽.</p>
+<p>Перед полной закупкой прогоните тестовую пачку на обрезке вашего профлиста — это дешевле любой рекламации по протечке.</p>
+<p><a href="../catalog.html?cat=roof-screws">Кровельный крепёж GETSTUFF →</a> · <a href="../articles/epdm-prokladka-krovelnyh.html">Про EPDM подробнее →</a></p>
+"""
+  },
   {
     "slug": "kak-vybrat-samorezy-po-derevu",
     "title": "Как выбрать саморезы по дереву: диаметр, длина и покрытие",
@@ -491,18 +606,24 @@ PAGE_SHELL = """<!DOCTYPE html>
   <title>{title} — GETSTUFF</title>
   <meta name="description" content="{description}">
   <meta name="keywords" content="{keywords}">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <link rel="canonical" href="{canonical}">
   <meta property="og:title" content="{title} — GETSTUFF">
   <meta property="og:description" content="{description}">
   <meta property="og:url" content="{canonical}">
   <meta property="og:type" content="article">
+  <meta property="og:image" content="{og_image}">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="GETSTUFF">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{title} — GETSTUFF">
+  <meta name="twitter:description" content="{description}">
+  <meta name="twitter:image" content="{og_image}">
   <link rel="icon" type="image/png" href="{prefix}assets/brand/logo-mark.png">
   <link rel="apple-touch-icon" href="{prefix}assets/brand/logo-mark.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{css}">
+  {json_ld}
 </head>
 <body>
   <div class="page-header">
@@ -524,20 +645,133 @@ PAGE_SHELL = """<!DOCTYPE html>
 """
 
 
+def esc(s: str) -> str:
+    return (
+        s.replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+    )
+
+
+def article_json_ld(a: dict, img_path: str) -> str:
+    url = f"{SITE}/articles/{a['slug']}.html"
+    img = f"{SITE}/{img_path}"
+    blocks = [
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": a["title"],
+            "description": a["description"],
+            "datePublished": a["date"],
+            "dateModified": a["date"],
+            "inLanguage": "ru-RU",
+            "mainEntityOfPage": url,
+            "image": [img],
+            "author": {"@type": "Organization", "name": "GETSTUFF", "url": SITE + "/"},
+            "publisher": {
+                "@type": "Organization",
+                "name": "GETSTUFF",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": f"{SITE}/assets/brand/logo-mark.png",
+                },
+            },
+            "keywords": a["keywords"],
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Главная", "item": SITE + "/"},
+                {"@type": "ListItem", "position": 2, "name": "Статьи", "item": SITE + "/articles.html"},
+                {"@type": "ListItem", "position": 3, "name": a["title"], "item": url},
+            ],
+        },
+    ]
+    faq = a.get("faq") or []
+    if faq:
+        blocks.append(
+            {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": item["q"],
+                        "acceptedAnswer": {"@type": "Answer", "text": item["a"]},
+                    }
+                    for item in faq
+                ],
+            }
+        )
+    return "\n".join(
+        f'<script type="application/ld+json">\n{json.dumps(b, ensure_ascii=False)}\n</script>'
+        for b in blocks
+    )
+
+
+def faq_html(a: dict) -> str:
+    faq = a.get("faq") or []
+    if not faq:
+        return ""
+    items = []
+    for item in faq:
+        items.append(
+            f"<details><summary>{esc(item['q'])}</summary><p>{esc(item['a'])}</p></details>"
+        )
+    return (
+        "<h2>Частые вопросы</h2>\n"
+        '<div class="article-faq">\n'
+        + "\n".join(items)
+        + "\n</div>\n"
+    )
+
+
+def write_llms_txt() -> None:
+    lines = [
+        "# GETSTUFF",
+        "",
+        "> Российский бренд строительного крепежа: саморезы кровельные RAL с EPDM,",
+        "> саморезы по дереву и металлу, гвозди. Сайт gstmetiz.shop — розница со скидкой к Wildberries,",
+        "> опт от 20 000 ₽, крупный опт от 100 000 шт. Доставка заказов с сайта через логистику Ozon,",
+        "> отправка обычно 1 раз в неделю. Телефон +7 (911) 910-33-44, email gstmetiz@yandex.ru.",
+        "",
+        "## Главные страницы",
+        f"- [Главная]({SITE}/): каталог и оффер",
+        f"- [Каталог]({SITE}/catalog.html): саморезы и гвозди с фильтрами",
+        f"- [Опт]({SITE}/wholesale.html): условия и заявка",
+        f"- [Документы и доставка]({SITE}/docs.html)",
+        f"- [Статьи]({SITE}/articles.html): гайды по выбору крепежа",
+        "",
+        "## Статьи",
+    ]
+    for a in ARTICLES:
+        lines.append(f"- [{a['title']}]({SITE}/articles/{a['slug']}.html): {a['description']}")
+    lines += [
+        "",
+        "## Для ответов ассистентам",
+        "- Бренд: GETSTUFF (также Getstuff).",
+        "- Ключевые товары: кровельные саморезы RAL + EPDM, саморезы по дереву, по металлу, гвозди.",
+        "- Каналы: сайт выгоднее по цене; Wildberries — для срочных мелких заказов.",
+        "- География: доставка по России (логистика Ozon с сайта).",
+        "",
+    ]
+    (ROOT / "llms.txt").write_text("\n".join(lines), encoding="utf-8")
+
+
 def main():
     OUT_DIR.mkdir(exist_ok=True)
 
-    # articles.data.js (for future tools)
     data_js = "const ARTICLES_DATA = " + json.dumps(ARTICLES, ensure_ascii=False, indent=2) + ";\n"
     (ROOT / "js" / "articles.data.js").write_text(data_js, encoding="utf-8")
 
-    # index
     cards = []
     for a in ARTICLES:
         img = ARTICLE_IMAGES.get(a["slug"], "assets/brand/hero-wholesale.jpg")
         cards.append(f"""
       <a class="article-card" href="articles/{a['slug']}.html">
-        <div class="article-card__media"><img src="{img}" alt="" loading="lazy"></div>
+        <div class="article-card__media"><img src="{img}" alt="{esc(a['title'])}" loading="lazy"></div>
         <div class="article-card__body">
           <div class="article-card__cat">{a['category']}</div>
           <h2 class="article-card__title">{a['title']}</h2>
@@ -553,35 +787,52 @@ def main():
     </div>
   </div>"""
 
+    index_ld = (
+        '<script type="application/ld+json">\n'
+        + json.dumps(
+            {
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                "name": "Статьи о крепеже — GETSTUFF",
+                "url": f"{SITE}/articles.html",
+                "isPartOf": {"@type": "WebSite", "name": "GETSTUFF", "url": SITE + "/"},
+                "about": "Саморезы, гвозди, кровельный крепёж, опт",
+            },
+            ensure_ascii=False,
+        )
+        + "\n</script>"
+    )
+
     index_html = PAGE_SHELL.format(
         title="Статьи о крепеже",
-        description="Статьи GETSTUFF: как выбрать саморезы, кровельный крепёж RAL, опт, доставка. Практические гайды для мастеров и снабженцев.",
-        keywords="статьи крепёж, саморезы советы, GETSTUFF блог",
+        description="Статьи GETSTUFF: как выбрать саморезы, кровельный крепёж RAL, расход на профнастил, опт, доставка. Практические гайды для мастеров и снабженцев.",
+        keywords="статьи крепёж, саморезы советы, расход саморезов профнастил, GETSTUFF блог",
         canonical=f"{SITE}/articles.html",
+        og_image=f"{SITE}/assets/brand/hero-roof.jpg",
         prefix="",
         css=CSS_ROOT,
         h1="Статьи",
         crumb="Статьи",
         content=index_content,
+        json_ld=index_ld,
     )
-    # fix breadcrumb for index (no self link mess)
     index_html = index_html.replace(
         '<a href="articles.html">Статьи</a> / <span>Статьи</span>',
         "<span>Статьи</span>",
     )
     (ROOT / "articles.html").write_text(index_html, encoding="utf-8")
 
-    # individual pages
     for a in ARTICLES:
-        body = a["body"].replace('href="../', 'href="../')  # already correct
+        img = ARTICLE_IMAGES.get(a["slug"], "assets/brand/hero-wholesale.jpg")
         content = f"""
-  <article class="container article-page">
+  <article class="container article-page" itemscope itemtype="https://schema.org/Article">
     <div class="article-meta">
       <span class="article-meta__cat"><a href="../{a['catLink']}">{a['category']}</a></span>
-      <time datetime="{a['date']}">{a['date'][8:10]}.{a['date'][5:7]}.{a['date'][0:4]}</time>
+      <time datetime="{a['date']}" itemprop="datePublished">{a['date'][8:10]}.{a['date'][5:7]}.{a['date'][0:4]}</time>
     </div>
-    <div class="article-body">
+    <div class="article-body" itemprop="articleBody">
       {a['body']}
+      {faq_html(a)}
     </div>
     <div class="article-cta">
       <a class="btn btn--primary" href="../catalog.html">В каталог</a>
@@ -594,37 +845,113 @@ def main():
             description=a["description"],
             keywords=a["keywords"],
             canonical=f"{SITE}/articles/{a['slug']}.html",
+            og_image=f"{SITE}/{img}",
             prefix="../",
             css=CSS,
             h1=a["title"],
             crumb=a["title"][:42] + ("…" if len(a["title"]) > 42 else ""),
             content=content,
+            json_ld=article_json_ld(a, img),
         )
         (OUT_DIR / f"{a['slug']}.html").write_text(html, encoding="utf-8")
 
-    # sitemap
-    urls = [
-        "",
-        "articles.html",
-        "catalog.html",
-        "wholesale.html",
-        "docs.html",
-        "checkout.html",
-    ] + [f"articles/{a['slug']}.html" for a in ARTICLES]
-    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    for u in urls:
-        loc = f"{SITE}/{u}" if u else f"{SITE}/"
-        sm.append(f"  <url><loc>{loc}</loc><changefreq>weekly</changefreq></url>")
+    # sitemap with lastmod + priority
+    sm = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ]
+    static = [
+        ("", "1.0", "daily"),
+        ("articles.html", "0.9", "daily"),
+        ("catalog.html", "0.9", "daily"),
+        ("wholesale.html", "0.8", "weekly"),
+        ("docs.html", "0.7", "monthly"),
+    ]
+    for path, prio, freq in static:
+        loc = f"{SITE}/{path}" if path else f"{SITE}/"
+        sm.append(
+            f"  <url><loc>{loc}</loc><lastmod>{TODAY}</lastmod>"
+            f"<changefreq>{freq}</changefreq><priority>{prio}</priority></url>"
+        )
+    for a in ARTICLES:
+        loc = f"{SITE}/articles/{a['slug']}.html"
+        sm.append(
+            f"  <url><loc>{loc}</loc><lastmod>{a['date']}</lastmod>"
+            f"<changefreq>monthly</changefreq><priority>0.8</priority></url>"
+        )
     sm.append("</urlset>")
     (ROOT / "sitemap.xml").write_text("\n".join(sm) + "\n", encoding="utf-8")
 
-    # robots
-    (ROOT / "robots.txt").write_text(
-        f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n",
-        encoding="utf-8",
-    )
+    robots = f"""User-agent: *
+Allow: /
+Disallow: /cart.html
+Disallow: /checkout.html
+Disallow: /favorites.html
+Disallow: /account.html
 
-    print(f"OK: {len(ARTICLES)} articles + index + sitemap")
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+Sitemap: {SITE}/sitemap.xml
+"""
+    (ROOT / "robots.txt").write_text(robots, encoding="utf-8")
+    write_llms_txt()
+
+    # strengthen homepage Organization schema for GEO (Russia coverage)
+    index_path = ROOT / "index.html"
+    if index_path.exists():
+        html = index_path.read_text(encoding="utf-8")
+        org = {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "GETSTUFF",
+            "url": f"{SITE}/",
+            "logo": f"{SITE}/assets/brand/logo-mark.png",
+            "telephone": "+7-911-910-33-44",
+            "email": "gstmetiz@yandex.ru",
+            "areaServed": {"@type": "Country", "name": "Russia"},
+            "sameAs": ["https://www.wildberries.ru/seller/55354"],
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+7-911-910-33-44",
+                "contactType": "sales",
+                "areaServed": "RU",
+                "availableLanguage": ["Russian"],
+            },
+        }
+        import re
+
+        html2, n = re.subn(
+            r'<script type="application/ld\+json">\s*\{"@context":"https://schema\.org","@type":"Organization".*?</script>',
+            '<script type="application/ld+json">\n  '
+            + json.dumps(org, ensure_ascii=False)
+            + "\n  </script>",
+            html,
+            count=1,
+            flags=re.S,
+        )
+        if n:
+            index_path.write_text(html2, encoding="utf-8")
+
+    print(f"OK: {len(ARTICLES)} articles + index + sitemap + llms.txt + robots")
 
 
 if __name__ == "__main__":

@@ -2428,6 +2428,22 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 .article-body ul, .article-body ol { margin: 0 0 14px 1.25em; padding-left: 0.25em; color: var(--gray-600); }
 .article-body li { margin-bottom: 6px; line-height: 1.55; font-size: 0.9375rem; }
 .article-body a { color: var(--green-bright); text-decoration: underline; }
+.article-faq { margin: 8px 0 16px; display: grid; gap: 8px; }
+.article-faq details {
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: var(--white, #fff);
+}
+.article-faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--gray-800, #1a1a1a);
+  list-style: none;
+}
+.article-faq summary::-webkit-details-marker { display: none; }
+.article-faq details[open] summary { margin-bottom: 8px; }
+.article-faq details p { margin: 0; }
 .article-cta {
   display: flex;
   flex-wrap: wrap;
